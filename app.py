@@ -6,8 +6,10 @@ app.config.update(
     ENV='development'
 )
 
+db = boto3.client('dynamodb')
 
-@app.route('/')
+
+@app.route('/<name>')
 def hello_world():
     return render_template('index.html')
 

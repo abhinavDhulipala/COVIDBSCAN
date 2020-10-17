@@ -21,6 +21,11 @@ def login():
     return render_template('login.html', error=error)
 
 
+@app.route("/register")
+def register():
+    return render_template("register.html")
+
+
 @app.route("/dashboard")
 def do_the_dash():
     return render_template('main.html')

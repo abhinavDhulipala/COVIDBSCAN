@@ -1,58 +1,13 @@
-<!DOCTYPE html>
+{% extends "login.html" %}
 
-<html lang="en">
-  <head>
-    <title>register page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
-  </head>
-  <body>
-    <div class="container">
-      <h1>Please Register</h1>
-      <br>
-      <form action="#" method="post">
-          <div>
-              <label>
-                  Email
-                  <input type="email" placeholder="Email" name="username">
-              </label>
-          </div>
-          <div>
-              <label>
-                  Password
-                  <input type="password" placeholder="Password" name="password">
-              </label>
-          </div>
-          <div>
-              <label>
-                  Confirm Password
-                  <input type="password" placeholder="Confirm Password" name="password_conf">
-              </label>
-          </div>
-          <div>
-              <label>Gender
-              <select id="gender" name="genders">
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Non-binary">Non-Binary</option>
-                  <option value="Other">Other</option>
-
-              </select>
-              </label>
-          </div>
-          <div>
-              <label>
-                  Age
-                  <input type="number" placeholder="Age" name="age">
-              </label>
-          </div>
-
-        <input class="btn btn-default" type="submit" value="Register">
-      </form>
-      <a href="/login">Don't have an account? Register here!</a>
-      {% if error %}
-        <p class="error"><strong>Error:</strong> {{ error }}
-      {% endif %}
+{% block log_reg_dif %}
+    <div class="form-group">
+        <label for="pass_confirm">Confirm Password</label>
+        <input type="password" class="form-control" name="pass_c" id="pass_confirm">
     </div>
-  </body>
-</html>
+    <div class="form-group">
+        <label for="phone_num">Phone Number</label>
+        <input type="tel" class="form-control" name="phone" id="phone_num">
+    </div>
+    <a href="{{ url_for('login') }}">Already have an account? Login Here!</a>
+{% endblock %}

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Amplify from "aws-amplify";
+import Amplify, {Auth} from "aws-amplify";
 import awsExports from "./aws-exports";
 import './App.css';
 import {Button, Card, Container, Form} from "react-bootstrap";
@@ -10,12 +10,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 Amplify.configure(awsExports);
 
 class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {date: new Date()}
+    }
     render() {
         return (
             <div className="App">
+                <Button> <AmplifySignOut/> </Button>
                 <header className="App-header">
                     <Container className="mw-50">
-                        <Button> <AmplifySignOut/> </Button>
                         <Card>
                             <Card.Body>
                                 <Card.Text className="text-info">

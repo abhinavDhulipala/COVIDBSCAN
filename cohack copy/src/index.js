@@ -108,13 +108,13 @@ class Quiz extends Component {
                         asymptomaticBank: question
                     });
                 });
-            } else if (answer === "Contact with a COVID-19 positive person" ||
-                answer === "International Travel") {
+            } else if (this.state.asymptomatic === 1 && (answer === "Contact with a COVID-19 positive person" ||
+                answer === "International Travel")) {
                 this.setState({
                     asymptomatic: this.state.asymptomatic + 1
                 });
-            } else if (answer === "Live in or have visited a place where COVID-19 is widespread" ||
-                        answer === "No exposure") {
+            } else if (this.state.asymptomatic === 1 && (answer === "Live in or have visited a place where COVID-19 is widespread" ||
+                        answer === "No exposure")) {
                 this.setState({
                     asymptomatic: this.state.asymptomatic + 2
                 });

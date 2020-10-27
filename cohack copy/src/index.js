@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import questionAPI from './question';
 import asymptomaticAPI from './asymptomatic';
+import exposureAPI from './exposure';
 import UserWelcome from "./components/UserWelcome";
 import ToggleAge from "./components/ToggleAge";
 import StartSymptoms from "./components/StartSymptoms";
-import UnderAge from "./components/UnderAge";
 import Disagree from "./components/Disagree";
 import Minor from "./components/Minor";
 import Asymptomatic from "./components/Asymptomatic";
@@ -18,22 +18,28 @@ class Quiz extends Component {
         super(props);
         this.state = {
             questionBank: [],
-            asymptomaticBank: [],
-            score: 0,
             responses: 0,
-            isOfAge: false,
-            isMinor: false,
-            ageClicked: false,
             agree: false,
             refresh: true,
             atQuiz: false,
-            asymptomatic: 0,
+
+            // for keeping track of age state
+            ageClicked: false,
             isSenior: false,
-            initialAsym: true
+            isOfAge: false,
+            isMinor: false,
+
+            // state for asymptomatic sections
+            asymptomatic: 0,
+            asymptomaticBank: [],
+            initialAsym: true,
+
+            // for exposure page
+            exposureQuestion: [],
+            exposed: 0
         };
 
         this.getQuestions = this.getQuestions.bind(this);
-        this.playAgain = this.playAgain.bind(this);
         this.computeAnswer = this.computeAnswer.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
         this.toggleAge = this.toggleAge.bind(this);
@@ -41,12 +47,13 @@ class Quiz extends Component {
         this.getAsymptomaticQuestions = this.getAsymptomaticQuestions.bind(this);
     }
 
+
     // Function to get question from ./question
     getQuestions = () => {
         questionAPI().then(question => {
             this.setState({questionBank: question});
         });
-    };
+    }
 
     getAsymptomaticQuestions = () => {
         asymptomaticAPI(1).then(question => {
@@ -56,11 +63,13 @@ class Quiz extends Component {
         });
     }
 
-    // Set state back to default and call function
-    playAgain = () => {
-        this.getQuestions();
-        this.setState({score: 0, responses: 0});
-    };
+    getExposureQuestions = () => {
+        exposureAPI(1).then(question => {
+            this.setState({
+                exposureQuestion: question
+            });
+        });
+    }
 
     // Function to compute scores
     computeAnswer = (answer, correctAns) => {
@@ -71,15 +80,8 @@ class Quiz extends Component {
                    responses: -1
                 });
             } else {
-                if (answer === correctAns[i]) {
-                    this.setState({
-                        score: this.state.score + 1
-                    });
-                }
                 this.setState({
-                    responses: this.state.responses < 5
-                        ? this.state.responses + 1
-                        : 5
+                    responses: 1
                 });
             }
         }
@@ -133,6 +135,18 @@ class Quiz extends Component {
         }
     };
 
+    computeExposureAnswer = (answer, correctAns) => {
+        if (answer === "Yes") {
+            this.setState({
+                exposed: 1
+            });
+        } else {
+            this.setState({
+               exposed: -1
+            });
+        }
+    }
+
     toggleAge = () => {
         this.setState({
             isOfAge: !this.state.isOfAge,
@@ -183,14 +197,12 @@ class Quiz extends Component {
     componentDidMount() {
         this.getQuestions();
         this.getAsymptomaticQuestions();
+        this.getExposureQuestions();
     }
 
     render() {
-        const score = this.state.score;
         const isOfAge = this.state.isOfAge;
-        const ageClicked = this.state.ageClicked;
         const questionBank = this.state.questionBank;
-        const questionBankLength = this.state.questionBank.length;
         const responses = this.state.responses;
         const agree = this.state.agree;
         const refresh = this.state.refresh;
@@ -199,12 +211,15 @@ class Quiz extends Component {
         const isSenior = this.state.isSenior;
         const asymptomatic = this.state.asymptomatic;
         const asymptomaticBank = this.state.asymptomaticBank;
+        const exposureQuestion = this.state.exposureQuestion;
+        const exposed = this.state.exposed;
 
         return (
         <div className="container">
             {refresh && <UserWelcome toggleAgree={this.toggleAgree}
                                      toggleDisagree={this.toggleDisagree}
-                                     toggleRefresh={this.toggleRefresh}/>}
+                                     toggleRefresh={this.toggleRefresh} />}
+
             {(agree && !atQuiz && !isMinor && !isSenior) ? (
                 <ToggleAge toggleAge={this.toggleAge} toggleMinor={this.toggleMinor}/>
             ) : (
@@ -220,7 +235,7 @@ class Quiz extends Component {
             {!isSenior && !atQuiz && isOfAge && !isMinor && !refresh && <ToggleSenior toggleSenior={this.toggleSenior}
                                                   toggleNotSenior={this.toggleNotSenior}/>}
 
-            {(isSenior || !isSenior) && atQuiz && responses !== -1 &&
+            {(isSenior || !isSenior) && atQuiz && responses !== -1 && responses !== 1 &&
             <StartSymptoms
                 questionBank={questionBank}
                 responses={responses}
@@ -240,8 +255,13 @@ class Quiz extends Component {
                 />
             }
 
-            {responses > 0 &&
-                <DetermineExposure />
+            {responses === 1 &&
+                <DetermineExposure
+                    questionBank={exposureQuestion}
+                    compute={this.computeExposureAnswer}
+                    exposed={exposed}
+                    senior={isSenior}
+                />
             }
 
         </div>)

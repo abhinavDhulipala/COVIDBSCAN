@@ -60,8 +60,10 @@ class UserWelcome extends Component {
                 <p> Select "I agree" to proceed with the Coronavirus Self-Checker. </p>
             </body>
 
-            <button onClick={this.onClickAgree}> I agree </button>
-            <button onClick={this.onClickDisagree}> I don't agree </button>
+            <div>
+                <button onClick={this.onClickAgree}> I agree </button>
+                <button onClick={this.onClickDisagree}> I don't agree </button>
+            </div>
         </div>
 
 /*        return this.state.isLoggedIn ? (

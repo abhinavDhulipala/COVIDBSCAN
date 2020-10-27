@@ -1,15 +1,23 @@
+import React from "react";
+
 const qBank = [
     {
-        question:
-            "Are you experiencing any of these symptoms?",
-        answers: ["Fever or Feeling Feverish (chills, sweating)", "Difficulty Breathing (not severe)",
-            "New or worsening cough", "Sore throat", "Whole Body Aches", "Vomiting or Diarrhea",
-            "None of the Above"],
-        correct: ["Fever or Feeling Feverish (chills, sweating)", "Difficulty Breathing (not severe)",
-            "New or worsening cough", "Sore throat", "Whole Body Aches", "Vomiting or Diarrhea"],
-        questionId: "1"
+        question: <div>
+            Are you experiencing any of these symptoms?
+            <ul>
+                <li> Fever or Feeling Feverish (chills, sweating) </li>
+                <li> Difficulty Breathing (not severe) </li>
+                <li> New or worsening cough </li>
+                <li> Sore throat </li>
+                <li> Whole Body Aches </li>
+                <li> Vomiting or Diarrhea </li>
+            </ul>
+        </div>,
+        answers: ["Yes", "None of the Above"],
+        correct: ["Yes", "None of the Above"],
+        questionId: "0"
     },
 ];
 
-export default (n = 5) =>
+export default (n = 1) =>
     Promise.resolve(qBank.sort().slice(0, n));

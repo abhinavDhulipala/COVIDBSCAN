@@ -3,6 +3,10 @@ import "../index.css";
 
 const QuestionBox = ({ question, options, selected}) => {
     const [answer, setAnswer] = useState(options);
+
+    // using setAnswer so that there is no warning lol
+    console.log(setAnswer)
+
     return (
         <div className="questionBox">
             <div className="question">{question}</div>

@@ -1,46 +1,32 @@
 import React, { Component } from 'react';
 import QuestionBox from "./QuestionBox";
+import Exposed from "./Exposed";
+import NotExposed from "./NotExposed"
 
 class DetermineExposure extends Component {
-    constructor(props) {
-        super(props);
-
-    }
-
-    // Function to get question from ./question
-    getQuestions() {
-        this.props.loadQuestions();
-    };
-
-    // Set state back to default and call function
-    playAgain = () => {
-        this.props.replay();
-    };
-
     // Function to compute scores
-    computeAnswer = (answer, correctAns) => {
+    computeExposureAnswer = (answer, correctAns) => {
         this.props.compute(answer, correctAns);
     };
 
-    // componentDidMount function to get question
-    componentDidMount() {
-        this.getQuestions();
-    }
-
     render() {
-        const isOfAge = this.props.isOfAge;
-        const score = this.props.score;
         const questionBank = this.props.questionBank;
-        const responses = this.props.responses;
+        const exposed = this.props.exposed;
+        const isSenior = this.props.senior;
 
         return <div>
-            <div className="title"> Potential Exposure </div>
-            {
-                questionBank.length > 0 && responses < 7 &&
+            {exposed === 0 && <div className="title"> Determine Potential Exposure </div>}
+            {exposed === 0 &&
                 questionBank.map(({question, answers,
-                                      correct, questionId}) => <QuestionBox question=
-                                                                                {question} options={answers} key={questionId}
-                                                                            selected={answer => this.computeAnswer(answer, correct)}/>)
+                correct, questionId}) => <QuestionBox question=
+                 {question} options={answers} key={questionId}
+                 selected={answer => this.computeExposureAnswer(answer, correct)}/>)
+            }
+            {exposed === 1 &&
+                <Exposed senior={isSenior}/>
+            }
+            {exposed === -1 &&
+                <NotExposed senior={isSenior}/>
             }
         </div>
     }

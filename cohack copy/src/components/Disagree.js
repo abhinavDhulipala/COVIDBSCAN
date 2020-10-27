@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 
 class Disagree extends Component {
-    constructor(props) {
-        super(props);
-
-    }
-
     render() {
         return (
             <div>

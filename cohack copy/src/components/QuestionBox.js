@@ -11,7 +11,6 @@ const QuestionBox = ({ question, options, selected}) => {
                     key={index}
                     className="answerBtn"
                     onClick={()=>{
-                        setAnswer([text]);
                         selected(text);
                     }}> {text}
                 </button>

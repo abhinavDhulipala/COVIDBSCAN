@@ -49,7 +49,7 @@ class UserWelcome extends Component {
 
                 <p> Call 911 if you have any extreme or life threatening symptoms including constant chest pains
                 or pressure, extreme difficulty breathing or severe shortness of breath, severe constant
-                dizziness or light-headedness, slurred speech, or difficulty waking up. </p>
+                dizziness or lightheadedness, slurred speech, or difficulty waking up. </p>
 
                 <p> <strong>Note for International Users: </strong>
                     <br/>
@@ -66,6 +66,32 @@ class UserWelcome extends Component {
             </div>
         </div>
 
+/*        return this.state.isLoggedIn ? (
+            <div>Welcome, User</div>
+        ) : (
+            <div>Welcome, Guest</div>
+        )*/
+
+/*        let message
+        if (this.state.isLoggedIn) {
+            message = <div>Welcome, User</div>
+        } else {
+            message = <div>Welcome, Guest</div>
+        }
+
+        return <div>{message}</div>*/
+
+/*        if (this.state.isLoggedIn) {
+            return (
+                <div>
+                    Welcome, User
+                </div>
+            )
+        } else {
+            return (
+                <div> Welcome, Guest </div>
+            )
+        }*/
     }
 }
 

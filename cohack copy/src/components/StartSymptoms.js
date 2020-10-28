@@ -11,7 +11,7 @@ class StartSymptoms extends Component {
         this.componentDidMount = this.componentDidMount.bind(this);
     }
 
-    // Function to get question from ./question
+    // Function to get preliminaryQuestions from ./preliminaryQuestions
     getQuestions() {
         this.props.loadQuestions();
     };
@@ -26,7 +26,7 @@ class StartSymptoms extends Component {
         this.props.compute(answer, correctAns);
     };
 
-    // componentDidMount function to get question
+    // componentDidMount function to get preliminaryQuestions
     componentDidMount() {
         this.getQuestions();
     }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import QuestionBox from "./QuestionBox";
-import exposedAPI from "../symptomatic/exposed";
-import SecondStagePrimary from "./exposedmessages/SecondStagePrimary";
-import SecondStageSecondary from "./exposedmessages/SecondStageSecondary";
+import exposedAPI from "../symptomaticQuestions/exposed";
+import SecondStagePrimary from "./exposedRoutes/SecondStagePrimary";
+import SecondStageSecondary from "./exposedRoutes/SecondStageSecondary";
 
 class Exposed extends Component {
     constructor(props) {

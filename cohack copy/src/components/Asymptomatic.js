@@ -11,7 +11,7 @@ class Asymptomatic extends Component {
         this.computeAsymptomatic = this.computeAsymptomatic.bind(this);
     }
 
-    // Function to get question from ./question
+    // Function to get preliminaryQuestions from ./preliminaryQuestions
     getAsymptomaticQuestions() {
         this.props.loadQuestions();
     };
@@ -26,7 +26,7 @@ class Asymptomatic extends Component {
         this.props.compute(answer, correctAns);
     };
 
-    // componentDidMount function to get question
+    // componentDidMount function to get preliminaryQuestions
     componentDidMount() {
         this.getAsymptomaticQuestions();
     }

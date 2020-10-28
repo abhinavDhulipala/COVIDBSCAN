@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import './index.css';
 import ReactDOM from 'react-dom';
-import App from './App'
-import questionAPI from './question';
-import asymptomaticAPI from './asymptomatic';
-import exposureAPI from './exposure';
+import './index.css';
+import App from './App';
+import questionAPI from './preliminaryQuestions';
+import asymptomaticAPI from './asymptomaticQuestions';
+import exposureAPI from './determineExposureQuestions';
 import UserWelcome from "./components/UserWelcome";
 import ToggleAge from "./components/ToggleAge";
 import StartSymptoms from "./components/StartSymptoms";
@@ -30,12 +30,12 @@ class Quiz extends Component {
             isOfAge: false,
             isMinor: false,
 
-            // state for asymptomatic sections
+            // state for asymptomaticQuestions sections
             asymptomatic: 0,
             asymptomaticBank: [],
             initialAsym: true,
 
-            // for exposure page
+            // for determineExposureQuestions page
             exposureQuestion: [],
             exposed: 0
         };
@@ -49,7 +49,7 @@ class Quiz extends Component {
     }
 
 
-    // Function to get question from ./question
+    // Function to get preliminaryQuestions from ./preliminaryQuestions
     getQuestions = () => {
         questionAPI().then(question => {
             this.setState({questionBank: question});
@@ -117,7 +117,7 @@ class Quiz extends Component {
                     asymptomatic: this.state.asymptomatic + 1
                 });
             } else if (this.state.asymptomatic === 1 && (answer === "Live in or have visited a place where COVID-19 is widespread" ||
-                        answer === "No exposure")) {
+                        answer === "No")) {
                 this.setState({
                     asymptomatic: this.state.asymptomatic + 2
                 });
@@ -128,7 +128,7 @@ class Quiz extends Component {
                 this.setState({
                     asymptomatic: this.state.asymptomatic - 1
                 });
-            } else if (this.state.asymptomatic === -1 && answer === "No exposure") {
+            } else if (this.state.asymptomatic === -1 && answer === "No") {
                 this.setState({
                     asymptomatic: this.state.asymptomatic - 2
                 });
@@ -194,7 +194,7 @@ class Quiz extends Component {
         });
     }
 
-    // componentDidMount function to get question
+    // componentDidMount function to get preliminaryQuestions
     componentDidMount() {
         this.getQuestions();
         this.getAsymptomaticQuestions();
@@ -233,8 +233,10 @@ class Quiz extends Component {
 
             {isMinor && <Minor />}
 
-            {!isSenior && !atQuiz && isOfAge && !isMinor && !refresh && <ToggleSenior toggleSenior={this.toggleSenior}
-                                                  toggleNotSenior={this.toggleNotSenior}/>}
+            {!isSenior && !atQuiz && isOfAge && !isMinor && !refresh &&
+                <ToggleSenior toggleSenior={this.toggleSenior}
+                              toggleNotSenior={this.toggleNotSenior}/>
+            }
 
             {(isSenior || !isSenior) && atQuiz && responses !== -1 && responses !== 1 &&
             <StartSymptoms
@@ -269,6 +271,6 @@ class Quiz extends Component {
     }
 }
 
-export default Quiz;
+export default Quiz
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById("root"));

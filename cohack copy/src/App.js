@@ -40,13 +40,14 @@ function App() {
                   <Nav.Link eventKey={2}>
                     <Button variant="light" onClick={() => setQuiz(prevState => !prevState)}>
                         {renderLoginButton()}
-                    </Button>);</Nav.Link>
+                    </Button></Nav.Link>
               </Nav>
           </Navbar.Collapse>
       </Navbar>
         <Switch>
             <Route path="/participate"><Quiz/></Route>
             <Route path="/"><MainPage/></Route>
+            <Route path="/mp_login">yeet</Route>
         </Switch>
     </Router>
   );

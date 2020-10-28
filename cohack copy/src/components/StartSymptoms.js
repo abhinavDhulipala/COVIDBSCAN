@@ -36,7 +36,6 @@ class StartSymptoms extends Component {
         const responses = this.props.responses;
 
         return <div>
-            <div className="title"> Preliminary Screening Protocol </div>
             {
                 questionBank.length > 0 && responses < 7 &&
                 questionBank.map(({question, answers,

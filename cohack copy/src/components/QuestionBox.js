@@ -1,5 +1,7 @@
 import React,{useState} from "react";
 import "../index.css";
+import {Card} from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 const QuestionBox = ({ question, options, selected}) => {
     const [answer, setAnswer] = useState(options);
@@ -8,17 +10,23 @@ const QuestionBox = ({ question, options, selected}) => {
     console.log(setAnswer)
 
     return (
-        <div className="questionBox">
-            <div className="question">{question}</div>
-            {answer.map((text,index) => (
-                <button
-                    key={index}
-                    className="answerBtn"
-                    onClick={()=>{
-                        selected(text);
-                    }}> {text}
-                </button>
-            ))}
+        <div>
+            <Card className="mb-3" style={{ color: "#000" }}>
+                <Card.Body>
+                    <Card.Title className="font-weight-normal">
+                        {question}
+                    </Card.Title>
+                    {answer.map((text,index) => (
+                        <Button
+                            key={index}
+                            className="mr-3 mt-2 mb-2"
+                            onClick={()=>{
+                            selected(text);
+                        }}> {text}
+                        </Button>
+                    ))}
+                </Card.Body>
+            </Card>
         </div>
     )
 };

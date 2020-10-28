@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {Card} from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 class ToggleSenior extends Component {
     constructor(props) {
@@ -18,9 +21,15 @@ class ToggleSenior extends Component {
     render() {
         return (
             <div>
-                <h3> Are you 65 years of age or older? </h3>
-                <button onClick={this.toggleSenior}> Yes </button>
-                <button onClick={this.toggleNotSenior}> No </button>
+                <Card className="mb-3" style={{ color: "#000" }}>
+                    <Card.Body>
+                        <Card.Title className="font-weight-bolder">
+                            Are you 65 years of age or older?
+                        </Card.Title>
+                        <Button className="mr-3" onClick={this.toggleSenior}> Yes </Button>
+                        <Button className="mr-3" onClick={this.toggleNotSenior}> No </Button>
+                    </Card.Body>
+                </Card>
             </div>
         )
     }

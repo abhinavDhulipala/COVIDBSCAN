@@ -3,6 +3,8 @@ import QuestionBox from "./QuestionBox";
 import exposedAPI from "../symptomaticQuestions/exposed";
 import SecondStagePrimary from "./exposedRoutes/SecondStagePrimary";
 import SecondStageSecondary from "./exposedRoutes/SecondStageSecondary";
+import Button from "react-bootstrap/Button";
+import {Card, ListGroup, ListGroupItem} from "react-bootstrap";
 
 class Exposed extends Component {
     constructor(props) {
@@ -83,7 +85,6 @@ class Exposed extends Component {
 
         return (
             <div>
-                <div className="title"> Symptomatic With Exposure </div>
                 {!clickedNext &&
                     questionBank.map(({question, answers,
                     correct, questionId}) => <QuestionBox question=
@@ -91,7 +92,7 @@ class Exposed extends Component {
                     selected={answer => this.computeAnswer(answer, correct)}/>)
                 }
                 {!clickedNext &&
-                    <button onClick={this.clickNext.bind(this)}> Next </button>
+                    <Button onClick={this.clickNext.bind(this)}> Next </Button>
                 }
                 {clickedNext && primarySymptoms > 0 &&
                     <SecondStagePrimary senior={isSenior}/>
@@ -101,10 +102,25 @@ class Exposed extends Component {
                 }
                 {clickedNext && otherSymptoms > 0 && primarySymptoms === 0 && secondarySymptoms === 0 &&
                     <div>
-                        <h2> No COVID-19 testing needed at this time. </h2>
-                        <p> Sorry you are (or your child is) feeling sick. </p>
-                        <p> Stay home (or keep your child at home) and monitor your (or your child's) symptoms. </p>
-                        <p> Call your (or your child's) medical provider if you get worse. </p>
+                        <Card className="mb-3" style={{ color: "#000" }}>
+                            <Card.Body>
+                                <Card.Title className="font-weight-bolder">
+                                    No COVID-19 testing needed at this time.
+                                </Card.Title>
+                                <Card.Text>
+                                    Recommended steps are to stay home (or keep your child at home) and monitor
+                                    your (or your child's) symptoms.
+                                </Card.Text>
+                                <Card.Subtitle className="font-weight-bolder">
+                                    Call your (or your child's) medical provider if you get worse
+                                </Card.Subtitle>
+                                <ListGroup>
+                                    <ListGroupItem> Long-term care facility </ListGroupItem>
+                                    <ListGroupItem> Nursing home </ListGroupItem>
+                                    <ListGroupItem> Homeless shelter </ListGroupItem>
+                                </ListGroup>
+                            </Card.Body>
+                        </Card>
                     </div>
                 }
             </div>

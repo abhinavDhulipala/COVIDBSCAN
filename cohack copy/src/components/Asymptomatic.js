@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import QuestionBox from "./QuestionBox";
+import {Card, ListGroup, ListGroupItem} from "react-bootstrap";
 
 class Asymptomatic extends Component {
     constructor(props) {
@@ -37,7 +38,6 @@ class Asymptomatic extends Component {
         const isSenior = this.props.senior;
 
         return <div>
-            <div className="title"> Asymptomatic Screening Protocol </div>
             {
                 asymptomaticBank.length > 0 && asymptomatic === 0 &&
                 asymptomaticBank.map(({question, answers,
@@ -52,15 +52,23 @@ class Asymptomatic extends Component {
             selected={answer => this.computeAsymptomatic(answer, correct)}/>)
             }
             { asymptomatic === 2 && <div>
-                <p> Testing is not recommended at this time. </p>
-                <p> You may be asked to wear a mask. </p>
-                <p> Practice social distancing. </p>
-                <p> Monitor symptoms:
-                    <ul>
-                        <li> Check your temperature twice daily for 14 days. </li>
-                        <li> Contact your provider if symptoms worsen. </li>
-                    </ul>
-                </p>
+                <Card className="mb-3" style={{ color: "#000" }}>
+                    <Card.Body>
+                        <Card.Title className="font-weight-bold">
+                            Testing is not recommended at this time.
+                        </Card.Title>
+                        <Card.Text>
+                            Recommended steps are to wear a mask and practice social distancing.
+                        </Card.Text>
+                        <Card.Subtitle className="font-weight-bolder">
+                            Monitor symptoms:
+                        </Card.Subtitle>
+                    </Card.Body>
+                    <ListGroup>
+                        <ListGroupItem className="font-italic"> Check your temperature twice daily for 14 days. </ListGroupItem>
+                        <ListGroupItem className="font-italic"> Contact your medical provider if symptoms worsen. </ListGroupItem>
+                    </ListGroup>
+                </Card>
             </div>
             }
             { asymptomatic === -1 &&
@@ -70,29 +78,54 @@ class Asymptomatic extends Component {
             selected={answer => this.computeAsymptomatic(answer, correct)}/>)
             }
             { (asymptomatic === 3 || asymptomatic === -3) && !isSenior && <div>
-                <p> Testing is not recommended at this time. </p>
-                <p> Practice social distancing. </p>
+                <Card className="mb-3" style={{ color: "#000" }}>
+                    <Card.Body>
+                        <Card.Title className="font-weight-bold">
+                            Testing is not recommended at this time.
+                        </Card.Title>
+                        <Card.Text>
+                            Recommended steps are to practice social distancing.
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
             </div>
             }
             { (asymptomatic === 3 || asymptomatic === -3) && isSenior && <div>
-                <p> Testing is not recommended at this time. </p>
-                <p> Practice social distancing. </p>
-                <p>
-                    Since you identified yourself as being 65 years of age or over, obtain a
-                    30 day supply of medications. This is also pertinent if you have a
-                    chronic condition.
-                </p>
+                <Card className="mb-3" style={{ color: "#000" }}>
+                    <Card.Body>
+                        <Card.Title className="font-weight-bold">
+                            Testing is not recommended at this time.
+                        </Card.Title>
+                        <Card.Text>
+                            Recommended steps are to practice social distancing.
+                        </Card.Text>
+                        <Card.Text>
+                            Since you identified yourself as being 65 years of age or over, try to obtain a
+                            30 day supply of medications for your conditions. This is also pertinent if you have a
+                            chronic condition.
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
             </div>
             }
             { asymptomatic === -2 && <div>
-                <p> Testing is not recommended at this time. </p>
-                <p> Home quarantine. </p>
-                <p> Monitor symptoms:
-                    <ul>
-                        <li> Check your temperature twice daily for 14 days. </li>
-                        <li> Contact your provider if symptoms worsen. </li>
-                    </ul>
-                </p>
+                <Card className="mb-3" style={{ color: "#000" }}>
+                <Card.Body>
+                        <Card.Title className="font-weight-bold">
+                            Testing is not recommended at this time.
+                        </Card.Title>
+                        <Card.Text>
+                            Recommended steps are to stay home and quarantine.
+                        </Card.Text>
+                        <Card.Subtitle className="font-weight-bolder">
+                            Monitor symptoms:
+                        </Card.Subtitle>
+                    </Card.Body>
+                    <ListGroup>
+                        <ListGroupItem className="font-italic"> Check your temperature twice daily for 14 days. </ListGroupItem>
+                        <ListGroupItem className="font-italic"> Contact your medical provider if symptoms worsen. </ListGroupItem>
+                    </ListGroup>
+                </Card>
             </div>
             }
         </div>

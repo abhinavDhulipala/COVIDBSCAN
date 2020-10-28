@@ -15,7 +15,6 @@ class DetermineExposure extends Component {
         const isSenior = this.props.senior;
 
         return <div>
-            {exposed === 0 && <div className="title"> Determine Potential Exposure </div>}
             {exposed === 0 &&
                 questionBank.map(({question, answers,
                 correct, questionId}) => <QuestionBox question=

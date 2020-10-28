@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import QuestionBox from "../QuestionBox";
 import notexposedAPI from "../../symptomaticQuestions/notexposed";
 import ThirdStageSecondary from "./ThirdStageSecondary";
+import Button from "react-bootstrap/Button";
 
 class SecondStageSecondary extends Component {
     constructor(props) {
@@ -57,7 +58,7 @@ class SecondStageSecondary extends Component {
                     selected={answer => this.computeAnswer(answer, correct)}/>)
                 }
                 {!clickedNext &&
-                <button onClick={this.clickNext}> Next </button>
+                <Button onClick={this.clickNext.bind(this)}> Next </Button>
                 }
                 {clickedNext && !noHome &&
                     <ThirdStageSecondary senior={isSenior}/>

@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import {Card} from "react-bootstrap";
 
 class UserWelcome extends Component {
     constructor(props) {
@@ -35,63 +38,51 @@ class UserWelcome extends Component {
 
     render() {
         return <div>
-            <h1> Welcome </h1>
-            <h2> Disclaimer (must agree to continue) </h2>
-            <body>
-                <p> The purpose of the Coronavirus Self-Checker is to help you make decisions
-                about seeking appropriate medical care. This system is not intended for the
-                diagnosis or treatment of disease, including COVID-19. </p>
-
-                <p> The original self-checker project was made possible through a partnership with the CDC
-                Foundation and is enabled by Microsoft's Azure platform. CDC's collaboration with a
-                non-federal organization does not imply an endorsement of any one particular service, product,
-                    or enterprise. </p>
-
-                <p> Call 911 if you have any extreme or life threatening symptoms including constant chest pains
-                or pressure, extreme difficulty breathing or severe shortness of breath, severe constant
-                dizziness or lightheadedness, slurred speech, or difficulty waking up. </p>
-
-                <p> <strong>Note for International Users: </strong>
-                    <br/>
-                    Please check with your Ministry of Health, local health department, or medical provider
-                    for additional information and guidelines about COVID-19 in your location.
-                </p>
-
-                <p> Select "I agree" to proceed with the Coronavirus Self-Checker. </p>
-            </body>
-
-            <div>
-                <button onClick={this.onClickAgree}> I agree </button>
-                <button onClick={this.onClickDisagree}> I don't agree </button>
-            </div>
+            <header>
+                <Card className="mb-3" style={{ color: "#000" }}>
+                    <Card.Body>
+                        <Card.Title className="font-weight-bold">
+                            Welcome
+                        </Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">
+                            Disclaimer (must agree to continue)
+                        </Card.Subtitle>
+                        <Card.Text>
+                            The purpose of the Coronavirus Self-Checker is to help you make decisions
+                            about seeking appropriate medical care. This system is not intended for the
+                            diagnosis or treatment of disease, including COVID-19.
+                        </Card.Text>
+                        <Card.Text>
+                            The original self-checker project was made possible through a partnership with the CDC
+                            Foundation and is enabled by Microsoft's Azure platform. CDC's collaboration with a
+                            non-federal organization does not imply an endorsement of any one particular service, product,
+                            or enterprise.
+                        </Card.Text>
+                        <Card.Text>
+                            Call 911 if you have any extreme or life threatening symptoms including constant chest pains
+                            or pressure, extreme difficulty breathing or severe shortness of breath, severe constant
+                            dizziness or lightheadedness, slurred speech, or difficulty waking up.
+                        </Card.Text>
+                        <Card.Text className="font-weight-bolder">
+                            Select "I agree" to proceed with the Coronavirus Self-Screening.
+                        </Card.Text>
+                        <Button className="mr-3" onClick={this.onClickAgree}> I agree </Button>
+                        <Button className="ml-3" onClick={this.onClickDisagree}> I don't agree </Button>
+                    </Card.Body>
+                </Card>
+                <Card>
+                    <Card.Body>
+                        <Card.Title className="font-weight-bolder">
+                            Note for International Users
+                        </Card.Title>
+                        <Card.Text>
+                            Please check with your Ministry of Health, local health department, or medical provider
+                            for additional information and guidelines about COVID-19 in your location.
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </header>
         </div>
-
-/*        return this.state.isLoggedIn ? (
-            <div>Welcome, User</div>
-        ) : (
-            <div>Welcome, Guest</div>
-        )*/
-
-/*        let message
-        if (this.state.isLoggedIn) {
-            message = <div>Welcome, User</div>
-        } else {
-            message = <div>Welcome, Guest</div>
-        }
-
-        return <div>{message}</div>*/
-
-/*        if (this.state.isLoggedIn) {
-            return (
-                <div>
-                    Welcome, User
-                </div>
-            )
-        } else {
-            return (
-                <div> Welcome, Guest </div>
-            )
-        }*/
     }
 }
 

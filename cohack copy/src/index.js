@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
+import ReactDOM from 'react-dom';
+import App from './App'
 import questionAPI from './question';
 import asymptomaticAPI from './asymptomatic';
 import exposureAPI from './exposure';
@@ -268,4 +269,6 @@ class Quiz extends Component {
     }
 }
 
-ReactDOM.render(<Quiz/>, document.getElementById("root"));
+export default Quiz;
+
+ReactDOM.render(<App/>, document.getElementById('root'));

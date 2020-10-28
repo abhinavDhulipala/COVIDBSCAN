@@ -12,7 +12,7 @@ app.config.update(
 )
 
 
-# db = boto3.resource('dynamodb')
+db = boto3.resource('dynamodb', 'us-west-2')
 # auth = boto3.resource('cognito')
 
 

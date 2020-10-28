@@ -1,1 +1,0 @@
-mongodb+srv://kkhus5:Kk150085984@patientzero.nbton.mongodb.net/patientzero?retryWrites=true&w=majority

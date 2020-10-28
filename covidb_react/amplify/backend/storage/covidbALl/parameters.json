@@ -1,0 +1,5 @@
+{
+    "tableName": "concernedUsers",
+    "partitionKeyName": "email",
+    "partitionKeyType": "S"
+}

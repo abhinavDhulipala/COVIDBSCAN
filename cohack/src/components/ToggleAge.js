@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {Card} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import 'bootstrap/dist/css/bootstrap.min.css'
-
 class ToggleAge extends Component {
     constructor(props) {
         super(props);

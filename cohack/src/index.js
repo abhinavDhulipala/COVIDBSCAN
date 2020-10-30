@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import { Provider as StyletronProvider, DebugEngine } from "styletron-react";
+import { Client as Styletron } from "styletron-engine-atomic";
 import './index.css';
 import App from './App';
 import questionAPI from './preliminaryQuestions';
@@ -13,6 +15,11 @@ import Minor from "./components/Minor";
 import Asymptomatic from "./components/Asymptomatic";
 import DetermineExposure from "./components/DetermineExposure";
 import ToggleSenior from "./components/ToggleSenior";
+
+const debug =
+    process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
+
+const engine = new Styletron();
 
 class Quiz extends Component {
     constructor(props) {
@@ -273,4 +280,7 @@ class Quiz extends Component {
 
 export default Quiz
 
-ReactDOM.render(<App/>, document.getElementById("root"));
+ReactDOM.render(
+    <StyletronProvider value={engine} debug={debug} debugAfterHydration>
+        <App />
+    </StyletronProvider>, document.getElementById("root"));

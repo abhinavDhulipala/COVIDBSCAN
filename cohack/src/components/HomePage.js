@@ -2,34 +2,47 @@ import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Card, Button, CardDeck} from "react-bootstrap";
 import Quiz from "../index";
+import ClusterMap from "./ClusterMap";
+import {BrowserRouter as  Router, Switch, Route, Link} from "react-router-dom";
+import MapStyles from "./MapStyles";
+
+const deckStyle = {display: 'flex',
+    flexDirection: 'row',
+    marginTop: "30px",
+    marginBottom: "30px",
+    marginLeft: "30px",
+    marginRight: "30px"}
 
 class HomePage extends Component {
+
     constructor(props) {
         super(props);
-
         this.state = {
-            getStarted: false
+            page: 0
         }
     }
 
-    clickedStart = () => {
+
+    clickedQuiz = () => {
         this.setState({
-            getStarted: true
+            page: this.state.page + 1
         })
     }
 
-    render() {
-        const getStarted = this.state.getStarted;
+    clickedMap = () => {
+        this.setState({
+            page: this.state.page - 1
+        })
+    }
 
+/*>*/
+
+    render() {
+        const start = this.state.page;
         return <div>
-            {!getStarted && <div className="shadow-box-example z-depth-5"> <CardDeck style={{display: 'flex',
-                flexDirection: 'row',
-                marginTop: "30px",
-                marginBottom: "30px",
-                marginLeft: "30px",
-                marginRight: "30px"}}>
+            {start === 0 && <div className="shadow-box-example z-depth-5"> <CardDeck style={deckStyle}>
                 <Card style={{flex: 1}}>
-                    <Card.Img variant="top" src={require("../images/laying.svg")} />
+                    <Card.Img variant="top"  src={require("../images/laying.svg")} />
                     <Card.Body>
                         <Card.Title> Check Your Status </Card.Title>
                         <Card.Text>
@@ -37,7 +50,7 @@ class HomePage extends Component {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button onClick={this.clickedStart}> Get Started </Button>
+                        <Button  onClick={this.clickedQuiz}> Login & Participate </Button>
                     </Card.Footer>
                 </Card>
                 <Card style={{flex: 1}}>
@@ -49,7 +62,7 @@ class HomePage extends Component {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button onClick={this.clickedStart}> View Map </Button>
+                        <Button onClick={this.clickedMap}>View Map</Button>
                     </Card.Footer>
                 </Card>
                 <Card style={{flex: 1}}>
@@ -61,16 +74,17 @@ class HomePage extends Component {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button onClick={this.clickedStart}> Learn More </Button>
+                        <Button href={'https://devpost.com/software/covidb'}> Learn More </Button>
                     </Card.Footer>
                 </Card>
-            </CardDeck> </div>
-            }
-            {getStarted &&
-                <Quiz/>
-            }
+            </CardDeck>
+            </div>}
+            {start === 1 && <Quiz/>}
+
+            {start === -1 && <ClusterMap/>}
         </div>
     }
+
 }
 
 export default HomePage

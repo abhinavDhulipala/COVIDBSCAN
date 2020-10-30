@@ -5,7 +5,8 @@ import Quiz from "./index";
 import { ThemeProvider, StyleReset, Div, Button } from 'atomize';
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
-import {Link, Router} from "react-router-dom";
+import {Link} from "react-router-dom";
+import {BrowserRouter as Router} from  "react-router-dom"
 
 const theme = {
     colors: {
@@ -21,13 +22,10 @@ const theme = {
 
 function App() {
     return (
-        <ThemeProvider theme={theme}>
-            <StyleReset />
             <div className="App">
                 <NavBar />
                 <HomePage />
             </div>
-        </ThemeProvider>
     );
 }
 

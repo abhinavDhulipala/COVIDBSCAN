@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Card, Form, FormControl, Navbar, Nav, Button} from "react-bootstrap";
+import {Nav, Navbar} from "react-bootstrap";
 
 class NavBar extends Component {
     render() {
@@ -15,14 +15,11 @@ class NavBar extends Component {
                 />{' '}
             </Navbar.Brand>
             <Nav className="mr-auto">
-                <Nav.Link href="#home"> About </Nav.Link>
+                <Nav.Link href={'https://devpost.com/software/covidb'}> About </Nav.Link>
                 <Nav.Link href="#features"> Map </Nav.Link>
-                <Nav.Link href="#pricing"> Contact Us </Nav.Link>
+                <Nav.Link href="#pricing"> Don't Contact Us </Nav.Link>
             </Nav>
-            <Form inline>
-                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                <Button variant="outline-primary">Search</Button>
-            </Form>
+
         </Navbar>
     }
 }

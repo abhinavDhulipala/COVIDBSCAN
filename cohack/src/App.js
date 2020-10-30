@@ -5,6 +5,7 @@ import Quiz from "./index";
 import { ThemeProvider, StyleReset, Div, Button } from 'atomize';
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
+import {Link, Router} from "react-router-dom";
 
 const theme = {
     colors: {

@@ -1,4 +1,4 @@
-import {Card, ListGroup, ListGroupItem} from "react-bootstrap";
+import {Card} from "react-bootstrap";
 import React from "react";
 
 const qBank = [
@@ -33,7 +33,5 @@ const qBank = [
         questionId: "1"
     },
 ];
-
-//export default (n) => Promise.resolve(qBank.find(element => element === n));
 
 export default (n) => Promise.resolve(qBank.sort().slice(n - 1, n));

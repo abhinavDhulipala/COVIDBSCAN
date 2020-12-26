@@ -3,8 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import {Card, Button, CardDeck} from "react-bootstrap";
 import Quiz from "../index";
 import ClusterMap from "./ClusterMap";
-import {BrowserRouter as  Router, Switch, Route, Link} from "react-router-dom";
-import MapStyles from "./MapStyles";
 
 const deckStyle = {display: 'flex',
     flexDirection: 'row',
@@ -34,8 +32,6 @@ class HomePage extends Component {
             page: this.state.page - 1
         })
     }
-
-/*>*/
 
     render() {
         const start = this.state.page;

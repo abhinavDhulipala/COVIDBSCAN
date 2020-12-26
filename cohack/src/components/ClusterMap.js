@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Spinner} from "react-bootstrap";
-import {GoogleMap,useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
-import MapStyles from "./MapStyles";
+import {GoogleMap, useLoadScript, Marker, InfoWindow, Circle} from "@react-google-maps/api";
+import MapStyles from "./MapStyleds";
+
 
 const libraries = ["places"]
 const mapContainerStyle = {
@@ -21,6 +22,16 @@ const options = {
 }
 
 export default function ClusterMap() {
+    const [arr, setArr] = useState([])
+    const [called, setCalled] = useState(true)
+    if (called) {
+        setCalled((prevState => false))
+        fetch(`${process.env.REACT_APP_FLASK}/fetch`).then(res => res.json()).then(data => setArr(data))
+            .catch(() => console.log('fetch to flask back end failed'))
+    }
+    arr.map((elem) => console.log(elem))
+
+
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
         libraries
@@ -30,20 +41,14 @@ export default function ClusterMap() {
     }
     if (!isLoaded) return <Spinner animation="border" variant="info" />
 
+    console.log(arr)
     return (
     <div>
-        {/*<img*/}
-        {/*    alt=""*/}
-        {/*    src={require("../images/covidLogo.png")}*/}
-        {/*    width="30"*/}
-        {/*    height="30"*/}
-        {/*    className="d-inline-block align-top"*/}
-        {/*/>*/}
+
         <GoogleMap mapContainerStyle={mapContainerStyle}
                    zoom={8}
                    center={center}
                    options={options}>
-
         </GoogleMap>
     </div>
     );

@@ -4,12 +4,14 @@ import {Card, Button, CardDeck} from "react-bootstrap";
 import Quiz from "../index";
 import ClusterMap from "./ClusterMap";
 
-const deckStyle = {display: 'flex',
+const deckStyle = {
+    display: 'flex',
     flexDirection: 'row',
     marginTop: "30px",
     marginBottom: "30px",
     marginLeft: "30px",
-    marginRight: "30px"}
+    marginRight: "30px"
+}
 
 class HomePage extends Component {
 
@@ -70,7 +72,7 @@ class HomePage extends Component {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button href={'https://devpost.com/software/covidb'}> Learn More </Button>
+                        <Button href={process.env.REACT_APP_ABOUT}> Learn More </Button>
                     </Card.Footer>
                 </Card>
             </CardDeck>

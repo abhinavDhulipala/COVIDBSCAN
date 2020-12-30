@@ -1,7 +1,11 @@
-import React, { Component } from 'react'
+import {React, Component}  from 'react'
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Card} from "react-bootstrap";
+import {Amplify} from 'aws-amplify'
+import {withAuthenticator} from '@aws-amplify/ui-react'
+import config from './aws-exports'
+Amplify.configure(config)
 
 class UserWelcome extends Component {
     constructor(props) {
@@ -86,4 +90,4 @@ class UserWelcome extends Component {
     }
 }
 
-export default UserWelcome
+export default withAuthenticator(UserWelcome)

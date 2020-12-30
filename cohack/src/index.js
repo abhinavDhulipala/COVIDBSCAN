@@ -16,8 +16,7 @@ import Asymptomatic from "./components/Asymptomatic";
 import DetermineExposure from "./components/DetermineExposure";
 import ToggleSenior from "./components/ToggleSenior";
 
-const debug =
-    process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
+const debug = process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
 
 const engine = new Styletron();
 

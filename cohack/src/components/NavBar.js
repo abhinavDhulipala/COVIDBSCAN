@@ -8,16 +8,16 @@ class NavBar extends Component {
             <Navbar.Brand href="#home" >
                 <img
                     alt=""
-                    src={require("../images/covidLogo.png")}
-                    width="30"
-                    height="30"
+                    src={require('../images/covidLogo.png')}
+                    width="50"
+                    height="50"
                     className="d-inline-block align-top"
                 />{' '}
             </Navbar.Brand>
             <Nav className="mr-auto">
-                <Nav.Link href={'https://devpost.com/software/covidb'}> About </Nav.Link>
+                <Nav.Link href={process.env.REACT_APP_ABOUT}> About </Nav.Link>
                 <Nav.Link href="#features"> Map </Nav.Link>
-                <Nav.Link href="#pricing"> Don't Contact Us </Nav.Link>
+                <Nav.Link href="#pricing" onSelect={() => alert('No <3')}> Don't Contact Us </Nav.Link>
             </Nav>
 
         </Navbar>

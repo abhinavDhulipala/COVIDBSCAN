@@ -1,16 +1,20 @@
 from datetime import datetime
 
 import boto3
+import botocore.exceptions as be
 from faker import Faker
 from matplotlib import pyplot as plt
 from pandas import DataFrame
 from sklearn.cluster import DBSCAN
 from sklearn.datasets import make_blobs
-import botocore.exceptions as be
 
-flask_profile = boto3.session.Session(profile_name='abhi-amplifyv3')
+AWS_PROFILE = 'abhi-amplifyv3'
+DEV_DB = 'ConcernedUserTable'
+
+flask_profile = boto3.session.Session(profile_name=AWS_PROFILE)
 dynamodb = flask_profile.resource('dynamodb')
-table_name = 'ConcernedUserTable'
+# can toggle between DEV_DB and PROD_DB: set environment variable to do so or modify .env file. DEFAULT = DEV
+table_name = DEV_DB
 users_created = False
 
 
@@ -53,11 +57,6 @@ def __test_write():
     })
 
 
-"""
-*** For testing and Dev Only ***
-"""
-
-
 def get_table(name=table_name):
     try:
         return dynamodb.Table(name)
@@ -74,7 +73,7 @@ def get_user(username, table=table_name):
         })
 
 
-def insert_user(user: map):
+def insert_user(user: dict):
     assert set(user.keys()) == {'username', 'quizTaken', 'coords'} \
            and len(user.keys()) == 3, "must be in format: " \
                                       "{'username':'oski@gmail.com',\n" \

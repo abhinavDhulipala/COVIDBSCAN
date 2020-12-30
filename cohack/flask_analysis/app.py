@@ -23,7 +23,12 @@ def fetch():
 
 @app.route('/')
 def yeet():
-    return "<h1>yeet</>"
+    return "<h1>yeet<h1/>"
+
+
+@app.route('/store_user')
+def store_user():
+    pass
 
 
 if __name__ == '__main__':

@@ -12,7 +12,8 @@ class NavBar extends Component {
                     width="50"
                     height="50"
                     className="d-inline-block align-top"
-                />{' '}
+                    onClick={() => window.location.assign('/')}
+                />
             </Navbar.Brand>
             <Nav className="mr-auto">
                 <Nav.Link href={process.env.REACT_APP_ABOUT}> About </Nav.Link>

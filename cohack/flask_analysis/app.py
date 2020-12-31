@@ -23,7 +23,7 @@ def fetch():
 
 @app.route('/')
 def yeet():
-    return "<h1>yeet<h1/>"
+    return "<h1>local host found<h1/>"
 
 
 @app.route('/store_user')

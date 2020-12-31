@@ -1,20 +1,21 @@
-import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import { Provider as StyletronProvider, DebugEngine } from "styletron-react";
-import { Client as Styletron } from "styletron-engine-atomic";
-import './index.css';
-import App from './App';
-import questionAPI from './preliminaryQuestions';
-import asymptomaticAPI from './asymptomaticQuestions';
-import exposureAPI from './determineExposureQuestions';
-import UserWelcome from "./components/UserWelcome";
-import ToggleAge from "./components/ToggleAge";
-import StartSymptoms from "./components/StartSymptoms";
-import Disagree from "./components/Disagree";
-import Minor from "./components/Minor";
-import Asymptomatic from "./components/Asymptomatic";
-import DetermineExposure from "./components/DetermineExposure";
-import ToggleSenior from "./components/ToggleSenior";
+import React, {Component} from 'react'
+import ReactDOM from 'react-dom'
+import { Provider as StyletronProvider, DebugEngine } from "styletron-react"
+import { Client as Styletron } from "styletron-engine-atomic"
+import './index.css'
+import App from './App'
+import questionAPI from './preliminaryQuestions'
+import asymptomaticAPI from './asymptomaticQuestions'
+import exposureAPI from './determineExposureQuestions'
+import UserWelcome from "./components/UserWelcome"
+import ToggleAge from "./components/ToggleAge"
+import StartSymptoms from "./components/StartSymptoms"
+import Disagree from "./components/Disagree"
+import Minor from "./components/Minor"
+import Asymptomatic from "./components/Asymptomatic"
+import DetermineExposure from "./components/DetermineExposure"
+import ToggleSenior from "./components/ToggleSenior"
+import HomePage from "./components/HomePage";
 
 const debug = process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
 
@@ -44,38 +45,38 @@ class Quiz extends Component {
             // for determineExposureQuestions page
             exposureQuestion: [],
             exposed: 0
-        };
+        }
 
-        this.getQuestions = this.getQuestions.bind(this);
-        this.computeAnswer = this.computeAnswer.bind(this);
-        this.componentDidMount = this.componentDidMount.bind(this);
-        this.toggleAge = this.toggleAge.bind(this);
-        this.toggleAgree = this.toggleAgree.bind(this);
-        this.getAsymptomaticQuestions = this.getAsymptomaticQuestions.bind(this);
+        this.getQuestions = this.getQuestions.bind(this)
+        this.computeAnswer = this.computeAnswer.bind(this)
+        this.componentDidMount = this.componentDidMount.bind(this)
+        this.toggleAge = this.toggleAge.bind(this)
+        this.toggleAgree = this.toggleAgree.bind(this)
+        this.getAsymptomaticQuestions = this.getAsymptomaticQuestions.bind(this)
     }
 
 
     // Function to get preliminaryQuestions from ./preliminaryQuestions
     getQuestions = () => {
         questionAPI().then(question => {
-            this.setState({questionBank: question});
-        });
+            this.setState({questionBank: question})
+        })
     }
 
     getAsymptomaticQuestions = () => {
         asymptomaticAPI(1).then(question => {
             this.setState({
                 asymptomaticBank: question
-            });
-        });
+            })
+        })
     }
 
     getExposureQuestions = () => {
         exposureAPI(1).then(question => {
             this.setState({
                 exposureQuestion: question
-            });
-        });
+            })
+        })
     }
 
     // Function to compute scores
@@ -159,45 +160,45 @@ class Quiz extends Component {
             isOfAge: !this.state.isOfAge,
             ageClicked: !this.state.ageClicked,
             isMinor: false,
-        });
-    };
+        })
+    }
 
     toggleAgree = () => {
         this.setState({
             agree: true
-        });
+        })
     }
 
     toggleDisagree = () => {
         this.setState({
             agree: false
-        });
+        })
     }
 
     toggleRefresh = () => {
         this.setState({
             refresh: false
-        });
+        })
     }
 
     toggleMinor = () => {
         this.setState({
             isMinor: true
-        });
+        })
     }
 
     toggleSenior = () => {
         this.setState({
             isSenior: true,
             atQuiz: true
-        });
+        })
     }
 
     toggleNotSenior = () => {
         this.setState({
             isSenior: false,
             atQuiz: true
-        });
+        })
     }
 
     // componentDidMount function to get preliminaryQuestions
@@ -282,4 +283,5 @@ export default Quiz
 ReactDOM.render(
     <StyletronProvider value={engine} debug={debug} debugAfterHydration>
         <App />
+        <HomePage/>
     </StyletronProvider>, document.getElementById("root"));

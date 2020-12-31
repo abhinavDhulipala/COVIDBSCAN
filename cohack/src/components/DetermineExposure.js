@@ -17,8 +17,7 @@ class DetermineExposure extends Component {
         return <div>
             {exposed === 0 &&
                 questionBank.map(({question, answers,
-                correct, questionId}) => <QuestionBox question=
-                 {question} options={answers} key={questionId}
+                correct, questionId}) => <QuestionBox question={question} options={answers} key={questionId}
                  selected={answer => this.computeExposureAnswer(answer, correct)}/>)
             }
             {exposed === 1 &&

@@ -1,18 +1,28 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Spinner, Form, Row, Col, Overlay} from "react-bootstrap";
-import {GoogleMap, useLoadScript, Marker, InfoWindow, Circle} from "@react-google-maps/api";
+import {Button, Container, Form, Row, Spinner} from "react-bootstrap";
+import {GoogleMap, useLoadScript} from "@react-google-maps/api";
 import MapStyles from "./MapStyles";
 
 const libraries = ["places"]
+
+// TODO: find a way to make map container styles match parent dimensions
 const mapContainerStyle = {
-    width: '100vw',
+    width: '160vh',
     height: '100vh'
 }
 
 const options = {
     styles: MapStyles,
     zoomControl: true
+}
+
+function objectToParams(obj) {
+    let parameters = []
+    for (let k in obj) {
+        parameters.push(`${k}=${obj.k}`)
+    }
+    return parameters.join('&')
 }
 
 export default function ClusterMap() {
@@ -24,7 +34,7 @@ export default function ClusterMap() {
     const [called, setCalled] = useState(true)
     const target = useRef(null)
     if (called) {
-        setCalled((prevState => false))
+        setCalled(() => false)
         fetch(`${process.env.REACT_APP_FLASK}/fetch`).then(res => res.json()).then(data => setArr(data))
             .catch(() => console.log('fetch to flask back end failed'))
     }
@@ -34,29 +44,40 @@ export default function ClusterMap() {
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
         libraries
-    });
+    })
     if (loadError) {
         return (<h1>Bad luck old boy google maps or ur internet ain't working</h1>)
     }
     if (!isLoaded) return <Spinner animation="border" variant="info" />
 
+    const onInputChange = (partialText) => {
+        const parameters = {
+            input: partialText,
+            key: process.env.REACT_APP_GOOGLE_MAPS_KEY,
+            location: mapCenter
+        }
+        console.log(objectToParams(parameters))
+        fetch(`${process.env.REACT_APP_PLACES_AUTOCOMPLETE}${objectToParams(parameters)}`)
+            .then(r => console.log(r.json()))
+    }
+
     console.log(arr)
     return (
     <>
-        <Overlay target={target.current} show={true} placement="top-start">
+        <Container className={Row}>
             <Form.Group controlId="locationID">
                 <Form.Label>Enter location</Form.Label>
-                <brk/>
-                <Form.Control type="text" defaultValue="Denver, CO"/>
+                <Form.Control type="text" defaultValue="Denver, CO" onChange={onInputChange}/>
+                <Button variant="outline-dark" type="submit" block >Search!</Button>
             </Form.Group>
-        </Overlay>
-        <div ref={target} className="container-fluid m-0 p-0">
+        </Container>
+        <Container ref={target} className={Row}>
             <GoogleMap mapContainerStyle={mapContainerStyle}
-                       zoom={8}
+                       zoom={10}
                        center={mapCenter}
                        options={options}>
             </GoogleMap>
-        </div>
+        </Container>
     </>
     );
 }

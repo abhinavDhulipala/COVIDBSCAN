@@ -7,7 +7,7 @@ For this project you will need:
   - React & Python 3.3 >=
   
 ### Getting Started
-  - we reccomend VSCode or PyCharm/Webstorm for this project but anything will do
+  - we recommend VSCode or PyCharm/Webstorm for this project but anything will do
   - navigate to the directory ```cohack``` and ```npm i```
   - navigate to ```cohack/flask_analysis``` from project root
   - ```pip install -r requirements.txt```

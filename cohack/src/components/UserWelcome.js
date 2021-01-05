@@ -1,4 +1,4 @@
-import {React, Component}  from 'react'
+import React, {Component}  from 'react'
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Card} from "react-bootstrap";
@@ -90,4 +90,4 @@ class UserWelcome extends Component {
     }
 }
 
-export default withAuthenticator(UserWelcome)
+export default UserWelcome

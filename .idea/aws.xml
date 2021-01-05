@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="accountSettings">
-    <option name="activeProfile" value="profile:abhi-amplifyv3" />
+    <option name="activeProfile" value="profile:ashwin" />
     <option name="activeRegion" value="us-east-1" />
     <option name="recentlyUsedProfiles">
       <list>
+        <option value="profile:ashwin" />
         <option value="profile:abhi-amplifyv3" />
         <option value="profile:amplify-abhiv2" />
         <option value="profile:default" />

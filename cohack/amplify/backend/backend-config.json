@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "cohackd7c82153": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}

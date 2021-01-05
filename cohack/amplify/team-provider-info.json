@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cohack-dev-154658-authRole",
+      "UnauthRoleArn": "arn:aws:iam::455837844456:role/amplify-cohack-dev-154658-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::455837844456:role/amplify-cohack-dev-154658-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-cohack-dev-154658-deployment",
+      "UnauthRoleName": "amplify-cohack-dev-154658-unauthRole",
+      "StackName": "amplify-cohack-dev-154658",
+      "StackId": "arn:aws:cloudformation:us-east-1:455837844456:stack/amplify-cohack-dev-154658/28e73870-4f97-11eb-ba00-0af60b3b604b",
+      "AmplifyAppId": "d2pb26r8cgcie7"
+    },
+    "categories": {
+      "auth": {
+        "cohackd7c82153": {}
+      }
+    }
+  }
+}

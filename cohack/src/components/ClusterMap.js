@@ -4,14 +4,13 @@ import {Button, Container, Form, Row, Spinner} from "react-bootstrap";
 import {GoogleMap, useLoadScript} from "@react-google-maps/api";
 import MapStyles from "./MapStyles";
 import PlacesAutocomplete from 'react-places-autocomplete'
-import scriptLoader from "react-async-script-loader"
 
 const libraries = ["places"]
 
 // TODO: find a way to make map container styles match parent dimensions
 const mapContainerStyle = {
-    width: '160vh',
-    height: '100vh'
+    width: '95vmin',
+    height: '100vmin'
 }
 
 const options = {
@@ -47,22 +46,24 @@ function ClusterMap() {
             .catch(() => console.log('fetch to flask back end failed'))
     }
     arr.map((elem) => console.log(elem))
-    /*if (!isScriptLoaded || !isScriptLoadedSucceed) {
-        return (<h1 className="display-4 bg-warning d-flex flex-lg-shrink-1">
-            Our scripts are not loading, please try again (make sure to enable javascript if you haven't done so already)
-        </h1>)
-    }*/
-
 
     if (loadError) {
         return (<h1>Bad luck old boy google maps or ur internet ain't working</h1>)
     }
     if (!isLoaded) return <Spinner animation="border" variant="info" />
     console.log(arr)
+    const onAutoSelect = (textAddress) => {
+        setAddress(textAddress)
+        const request = encodeURI(`https://maps.googleapis.com/maps/api/geocode/json?address=${textAddress}&key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}`)
+        console.log(request)
+        fetch(request)
+            .then(res => res.json()).then(data => setCenter(data.results[0].geometry.location))
+            .catch(error => console.log(error))
+    }
     return (
     <>
-        <Container className={Row}>
-            <PlacesAutocomplete value={address} onChange={setAddress} onSelect={setAddress}>
+        <Container className={Row} target={target.current}>
+            <PlacesAutocomplete value={address} onChange={setAddress} onSelect={onAutoSelect}>
                 {({
                       getInputProps,
                       suggestions,
@@ -76,18 +77,25 @@ function ClusterMap() {
                                   className: 'form-control'
                               }
                           )}/>
-                          <div>
+                          <br/>
+                          <div className="d-flex justify-content-center">
                               {loading && <Spinner animation="border" variant="info"/>}
                               {suggestions.map((suggestion) => {
                                   const style = {className: "btn btn-outline-primary"}
-                                  console.log(suggestion.description)
                                   return (
-                                      <div {...getSuggestionItemProps(suggestion, {style})}>
-                                          {suggestion.description}
-                                      </div>
+                                        <div className="d-flex justify-content-around">
+                                          <Button variant="outline-dark"
+                                                  {...getSuggestionItemProps(suggestion, {style})}>
+                                              {suggestion.description}
+                                          </Button>
+                                        </div>
+
                                   )
                                   }
                               )}
+                          </div>
+                          <div className="d-flex justify-content-center">
+                              <Button variant="outline-success" onSelect={onAutoSelect}>Search My Area!</Button>
                           </div>
                       </div>
 
@@ -96,7 +104,11 @@ function ClusterMap() {
                 )}
             </PlacesAutocomplete>
         </Container>
-        <Container ref={target} className={Row}>
+        <Container ref={target} style={{
+            width: mapContainerStyle.width + '30px',
+            height: mapContainerStyle.height
+        }}>
+
             <GoogleMap mapContainerStyle={mapContainerStyle}
                        zoom={10}
                        center={mapCenter}

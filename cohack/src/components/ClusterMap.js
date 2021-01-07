@@ -9,7 +9,7 @@ const libraries = ["places"]
 
 // TODO: find a way to make map container styles match parent dimensions
 const mapContainerStyle = {
-    width: '95vmin',
+    width: '91vmin',
     height: '100vmin'
 }
 
@@ -17,15 +17,6 @@ const options = {
     styles: MapStyles,
     zoomControl: true
 }
-
-function objectToParams(obj) {
-    let parameters = []
-    for (let k in obj) {
-        parameters.push(`${k}=${obj.k}`)
-    }
-    return parameters.join('&')
-}
-
 function ClusterMap() {
 
     const [arr, setArr] = useState([])
@@ -71,16 +62,11 @@ function ClusterMap() {
                       loading,
                   }) => (
                       <div>
-                          <input {...getInputProps(
-                              {
-                                  placeholder: 'enter address',
-                                  className: 'form-control'
-                              }
-                          )}/>
+                          <input {...getInputProps({className: 'form-control'})}/>
                           <br/>
                           <div className="d-flex justify-content-center">
-                              {loading && <Spinner animation="border" variant="info"/>}
-                              {suggestions.map((suggestion) => {
+                              {loading ? <Spinner animation="border" variant="info"/>
+                              : suggestions.map((suggestion) => {
                                   const style = {className: "btn btn-outline-primary"}
                                   return (
                                         <div className="d-flex justify-content-around">
@@ -89,13 +75,9 @@ function ClusterMap() {
                                               {suggestion.description}
                                           </Button>
                                         </div>
-
                                   )
                                   }
                               )}
-                          </div>
-                          <div className="d-flex justify-content-center">
-                              <Button variant="outline-success" onSelect={onAutoSelect}>Search My Area!</Button>
                           </div>
                       </div>
 

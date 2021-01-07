@@ -26,11 +26,11 @@
 </form>
 <script>
     function toggleRegister() {
-        let register1 = document.getElementById('register1')
-        let toggleSignIn = document.getElementById('toggleSignIn')
-        let textOps = ['Already have an account? Sign in here', "Don't have an account? Click here to join"]
-        let buttonText = ['Login', 'Sign up']
-        let actions = ["{{ url_for('sign_up') }}", "{{ url_for('login')}}"]
+        const register1 = document.getElementById('register1')
+        const toggleSignIn = document.getElementById('toggleSignIn')
+        const textOps = ['Already have an account? Sign in here', "Don't have an account? Click here to join"]
+        const buttonText = ['Login', 'Sign up']
+        const actions = ["{{ url_for('sign_up') }}", "{{ url_for('login')}}"]
         register1.hidden = !register1.hidden
         toggleSignIn.innerText = textOps[+register1.hidden]
         document.getElementById('mainForm').action = actions[+register1.hidden]

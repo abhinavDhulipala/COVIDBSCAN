@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request
 
 app = Flask(__name__)
 
@@ -8,8 +8,10 @@ def hello_world():
     return redirect('/login')
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        return '<h1> yeet </h1>'
     return render_template('login.html')
 
 

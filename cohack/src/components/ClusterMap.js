@@ -1,8 +1,8 @@
-import React, {useRef, useState} from "react";
+import React, {useRef, useState} from "react"
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Button, Container, Form, Row, Spinner} from "react-bootstrap";
-import {GoogleMap, useLoadScript} from "@react-google-maps/api";
-import MapStyles from "./MapStyles";
+import {Button, Container, Row, Spinner} from "react-bootstrap"
+import {GoogleMap, useLoadScript} from "@react-google-maps/api"
+import MapStyles from "./MapStyles"
 import PlacesAutocomplete from 'react-places-autocomplete'
 
 const libraries = ["places"]

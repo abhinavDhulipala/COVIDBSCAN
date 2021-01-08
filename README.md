@@ -16,5 +16,5 @@ For this project you will need:
     - ```REACT_APP_GOOGLE_MAPS_KEY="<YOUR_KEY_HERE>"```
     - have the following API's Activated: Geocoding API, Maps Javascript API, and Places API
   - to run this project make sure the flask api server is started
-   
+
  Thanks for checking out our project

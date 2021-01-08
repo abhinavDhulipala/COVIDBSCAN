@@ -60,7 +60,7 @@ def __test_write():
 def get_table(name=table_name):
     try:
         return dynamodb.Table(name)
-    except Exception:
+    except be:
         migration()
         return dynamodb.Table(name)
 

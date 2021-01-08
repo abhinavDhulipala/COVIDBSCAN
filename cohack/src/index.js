@@ -282,6 +282,6 @@ export default Quiz
 
 ReactDOM.render(
     <StyletronProvider value={engine} debug={debug} debugAfterHydration>
-        <App />
+        <App/>
         <HomePage/>
     </StyletronProvider>, document.getElementById("root"));

@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-covidbv3-dev-14716-authRole",
+      "UnauthRoleArn": "arn:aws:iam::025967645844:role/amplify-covidbv3-dev-14716-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::025967645844:role/amplify-covidbv3-dev-14716-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-covidbv3-dev-14716-deployment",
+      "UnauthRoleName": "amplify-covidbv3-dev-14716-unauthRole",
+      "StackName": "amplify-covidbv3-dev-14716",
+      "StackId": "arn:aws:cloudformation:us-east-1:025967645844:stack/amplify-covidbv3-dev-14716/85237850-1a8c-11eb-8408-0e9c0517557f",
+      "AmplifyAppId": "d2ad08o4hgxge7"
+    },
+    "categories": {
+      "auth": {
+        "covidbv37e591f6d": {}
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 from flask import Flask, make_response, jsonify
-import scheduled_analysis
+#import scheduled_analysis
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -10,12 +10,12 @@ CORS(app)
 def fetch():
     print('started')
     outbound = []
-    for coord, radi in scheduled_analysis.SINGELTON.latest():
+    """for coord, radi in scheduled_analysis.SINGELTON.latest():
         outbound.append({
             'radius': radi,
             "lon": coord[0],
             "lat": coord[1]
-        })
+        })"""
     response = make_response(jsonify(outbound), 200)
     response.headers['Content-Type'] = 'application/json'
     return response
@@ -23,7 +23,7 @@ def fetch():
 
 @app.route('/')
 def yeet():
-    return "<h1>local host found<h1/>"
+    return "<h1>hi I exist<h1/>"
 
 
 @app.route('/store_user')

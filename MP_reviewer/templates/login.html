@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block title %}<title>Login</title>{% endblock %}
+{% block body %}
+<form id="mainForm" method="post" action="{{ url_for('login') }}">
+  <div class="mb-3" >
+    <label for="email" class="d-flex justify-content-center">Email address</label>
+    <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="password" class="d-flex justify-content-center">Password</label>
+    <input type="password" class="form-control" id="password">
+  </div>
+  <div id="register1" hidden>
+      <label for="credentials" class="d-flex justify-content-center">Enter credentials (Med card, CPR certificate, etc.)</label>
+      <input type="file" class="form-control" id="credentials">
+  </div>
+  <div>
+      <button id="submit" type="submit" class="btn btn-primary col-2 justify-center" onsubmit="">
+          Login
+      </button>
+  </div>
+
+  <a id="toggleSignIn" class="text-primary justify-content-center" onclick="toggleRegister()">
+      Don't have an account? Click here join!
+  </a>
+</form>
+<script>
+    function toggleRegister() {
+        const register1 = document.getElementById('register1')
+        const toggleSignIn = document.getElementById('toggleSignIn')
+        const textOps = ['Already have an account? Sign in here', "Don't have an account? Click here to join"]
+        const buttonText = ['Login', 'Sign up']
+        const actions = ["{{ url_for('sign_up') }}", "{{ url_for('login')}}"]
+        register1.hidden = !register1.hidden
+        toggleSignIn.innerText = textOps[+register1.hidden]
+        document.getElementById('mainForm').action = actions[+register1.hidden]
+        document.getElementById('submit').innerHTML = buttonText[+register1.hidden]
+
+    }
+</script>
+
+{% block bootscript %} {{ super() }} {% endblock %}
+{% endblock %}

@@ -18,7 +18,6 @@ const options = {
     zoomControl: true
 }
 function ClusterMap() {
-
     const [arr, setArr] = useState([])
     const [address, setAddress] = useState('Denver, CO')
     const [mapCenter, setCenter] = useState({

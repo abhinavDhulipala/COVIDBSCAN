@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Card, Button, CardDeck} from "react-bootstrap";
+import {Button, Card, CardDeck} from "react-bootstrap";
 import Quiz from "../index";
 import ClusterMap from "./ClusterMap";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 const deckStyle = {
     display: 'flex',
@@ -15,28 +16,7 @@ const deckStyle = {
 
 class HomePage extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            page: 0
-        }
-    }
-
-
-    clickedQuiz = () => {
-        this.setState({
-            page: this.state.page + 1
-        })
-    }
-
-    clickedMap = () => {
-        this.setState({
-            page: this.state.page - 1
-        })
-    }
-
     render() {
-        const start = this.state.page;
         const homePage = <div className="shadow-box-example z-depth-5"> <CardDeck style={deckStyle}>
             <Card style={{flex: 1}}>
                 <Card.Img variant="top"  src={require("../images/laying.svg")} />
@@ -47,7 +27,7 @@ class HomePage extends Component {
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    <Button  onClick={this.clickedQuiz}> Login & Participate </Button>
+                    <Button  href="/quiz"> Login & Participate </Button>
                 </Card.Footer>
             </Card>
             <Card style={{flex: 1}}>
@@ -59,7 +39,7 @@ class HomePage extends Component {
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    <Button onClick={this.clickedMap}>View Map</Button>
+                    <Button href="/map">View Map</Button>
                 </Card.Footer>
             </Card>
             <Card style={{flex: 1}}>
@@ -77,12 +57,21 @@ class HomePage extends Component {
         </CardDeck>
         </div>
 
-        switch (start) {
-            case 0: return homePage
-            case 1: return <Quiz/>
-            case -1: return <ClusterMap/>
-            default: return homePage
-        }
+        return  (
+            <Router>
+                <Switch>
+                    <Route path="/quiz">
+                        <Quiz/>
+                    </Route>
+                    <Route path="/map">
+                        <ClusterMap/>
+                    </Route>
+                    <Route path="/">
+                        {homePage}
+                    </Route>
+                </Switch>
+            </Router>
+        )
     }
 
 }

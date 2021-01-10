@@ -19,15 +19,10 @@ function Index () {
             <Navbar/>
             <Router>
                 <Switch>
-                    <Route path="/quiz">
-                        <Quiz/>
-                    </Route>
-                    <Route path="/map">
-                        <ClusterMap/>
-                    </Route>
-                    <Route path="/">
-                        <HomePage/>
-                    </Route>
+                    <Route path="/quiz" component={Quiz}/>
+                    <Route path="/map" component={ClusterMap}/>
+                    <Route path="/home" component={HomePage}/>
+                    <Route path="/" component={() => window.location.href = '/home'}/>
                 </Switch>
             </Router>
         </div>

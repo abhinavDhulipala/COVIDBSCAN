@@ -17,7 +17,7 @@ class NavBar extends Component {
             <Nav className="mr-auto">
                 <Nav.Link href={process.env.REACT_APP_ABOUT}> About </Nav.Link>
                 <Nav.Link href="/map">Map</Nav.Link>
-                <Nav.Link> Don't Contact Us </Nav.Link>
+                <Nav.Link onClick={() => alert('no <3')}> Don't Contact Us </Nav.Link>
             </Nav>
         </Navbar>
     }

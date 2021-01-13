@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {Card} from "react-bootstrap";
-import Button from "react-bootstrap/Button";
 
 class Minor extends Component {
     render() {

@@ -44,6 +44,8 @@
     ]
   },
   "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "react-router-dom": "^5.2.0"
   },
   "proxy": "http://localhost:5000"

@@ -16,7 +16,7 @@ class HomePage extends Component {
 
         return  (
             <div className="shadow-box-example z-depth-5"> <CardDeck style={deckStyle}>
-                <Card style={{flex: 1}}>
+                <Card data-testid="card1" style={{flex: 1}}>
                     <Card.Img variant="top"  src={require("../images/laying.svg")} />
                     <Card.Body>
                         <Card.Title> Check Your Status </Card.Title>

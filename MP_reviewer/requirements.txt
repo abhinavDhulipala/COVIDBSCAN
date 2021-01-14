@@ -1,0 +1,12 @@
+capybara-py==0.1.6
+click==7.1.2
+cssselect==1.1.0
+Flask==1.1.2
+itsdangerous==1.1.0
+Jinja2==2.11.2
+lxml==4.6.2
+MarkupSafe==1.1.1
+selenium==3.141.0
+urllib3==1.26.2
+Werkzeug==1.0.1
+xpath-py==0.1.2

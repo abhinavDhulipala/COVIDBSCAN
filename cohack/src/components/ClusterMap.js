@@ -1,8 +1,8 @@
-import React, {useRef, useState} from "react";
+import React, {useRef, useState} from "react"
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Button, Container, Form, Row, Spinner} from "react-bootstrap";
-import {GoogleMap, useLoadScript} from "@react-google-maps/api";
-import MapStyles from "./MapStyles";
+import {Button, Container, Row, Spinner} from "react-bootstrap"
+import {GoogleMap, useLoadScript} from "@react-google-maps/api"
+import MapStyles from "./MapStyles"
 import PlacesAutocomplete from 'react-places-autocomplete'
 
 const libraries = ["places"]
@@ -18,7 +18,6 @@ const options = {
     zoomControl: true
 }
 function ClusterMap() {
-
     const [arr, setArr] = useState([])
     const [address, setAddress] = useState('Denver, CO')
     const [mapCenter, setCenter] = useState({

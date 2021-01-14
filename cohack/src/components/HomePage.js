@@ -1,8 +1,6 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Card, Button, CardDeck} from "react-bootstrap";
-import Quiz from "../index";
-import ClusterMap from "./ClusterMap";
+import {Button, Card, CardDeck} from "react-bootstrap";
 
 const deckStyle = {
     display: 'flex',
@@ -14,32 +12,11 @@ const deckStyle = {
 }
 
 class HomePage extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            page: 0
-        }
-    }
-
-
-    clickedQuiz = () => {
-        this.setState({
-            page: this.state.page + 1
-        })
-    }
-
-    clickedMap = () => {
-        this.setState({
-            page: this.state.page - 1
-        })
-    }
-
     render() {
-        const start = this.state.page;
-        return <div>
-            {start === 0 && <div className="shadow-box-example z-depth-5"> <CardDeck style={deckStyle}>
-                <Card style={{flex: 1}}>
+
+        return  (
+            <div className="shadow-box-example z-depth-5"> <CardDeck style={deckStyle}>
+                <Card data-testid="card1" style={{flex: 1}}>
                     <Card.Img variant="top"  src={require("../images/laying.svg")} />
                     <Card.Body>
                         <Card.Title> Check Your Status </Card.Title>
@@ -48,7 +25,7 @@ class HomePage extends Component {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button  onClick={this.clickedQuiz}> Login & Participate </Button>
+                        <Button  href="/quiz"> Login & Participate </Button>
                     </Card.Footer>
                 </Card>
                 <Card style={{flex: 1}}>
@@ -60,7 +37,7 @@ class HomePage extends Component {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button onClick={this.clickedMap}>View Map</Button>
+                        <Button href="/map">View Map</Button>
                     </Card.Footer>
                 </Card>
                 <Card style={{flex: 1}}>
@@ -76,11 +53,8 @@ class HomePage extends Component {
                     </Card.Footer>
                 </Card>
             </CardDeck>
-            </div>}
-            {start === 1 && <Quiz/>}
-
-            {start === -1 && <ClusterMap/>}
-        </div>
+            </div>
+        )
     }
 
 }

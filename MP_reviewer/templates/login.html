@@ -10,34 +10,48 @@
     <label for="password" class="d-flex justify-content-center">Password</label>
     <input type="password" class="form-control" id="password">
   </div>
+  <div class="mb-3" id="firstName" hidden>
+    <label class="d-flex justify-content-center" for="first_name">First Name</label>
+    <input type="text" class="form-control" id="first_name">
+
+  </div>
+  <div class="mb-3" id="lastName" hidden>
+    <label class="d-flex justify-content-center" for="last_name">Last Name</label>
+    <input type="text" class="form-control" id="last_name">
+  </div>
   <div id="register1" hidden>
       <label for="credentials" class="d-flex justify-content-center">Enter credentials (Med card, CPR certificate, etc.)</label>
       <input type="file" class="form-control" id="credentials">
   </div>
-  <div>
-      <button id="submit" type="submit" class="btn btn-primary col-2 justify-center" onsubmit="">
+  <br>
+  <div class="d-flex justify-content-center">
+      <button id="submit" type="submit" class="btn btn-primary col-2 " onsubmit="">
           Login
       </button>
   </div>
-
-  <a id="toggleSignIn" class="text-primary justify-content-center" onclick="toggleRegister()">
-      Don't have an account? Click here join!
-  </a>
+  <div class="alert alert-primary d-flex justify-content-center">
+    <a id="toggleSignIn" class="alert-link" onclick="toggleRegister()">
+        Don't have an account? Click here join!
+    </a>
+  </div>
 </form>
 <script>
     function toggleRegister() {
         const register1 = document.getElementById('register1')
         const toggleSignIn = document.getElementById('toggleSignIn')
+        const toggleFName = document.getElementById('firstName')
+        const toggleLName = document.getElementById('lastName')
         const textOps = ['Already have an account? Sign in here', "Don't have an account? Click here to join"]
-        const buttonText = ['Login', 'Sign up']
-        const actions = ["{{ url_for('sign_up') }}", "{{ url_for('login')}}"]
+        const buttonText = ['Sign up', 'Login']
+        const actions = ["{{ url_for('sign_up') }}", "{{ url_for('login') }}"]
         register1.hidden = !register1.hidden
+        toggleFName.hidden = !toggleFName.hidden
+        toggleLName.hidden = !toggleLName.hidden
         toggleSignIn.innerText = textOps[+register1.hidden]
         document.getElementById('mainForm').action = actions[+register1.hidden]
         document.getElementById('submit').innerHTML = buttonText[+register1.hidden]
+        document.title = buttonText[+register1.hidden]
 
     }
 </script>
-
-{% block bootscript %} {{ super() }} {% endblock %}
 {% endblock %}

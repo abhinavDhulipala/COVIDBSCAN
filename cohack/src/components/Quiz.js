@@ -234,7 +234,7 @@ class Quiz extends Component {
                               toggleNotSenior={this.toggleNotSenior}/>
                 }
 
-                {(isSenior || !isSenior) && atQuiz && responses !== -1 && responses !== 1 &&
+                {atQuiz && responses !== -1 && responses !== 1 &&
                 <StartSymptoms
                     questionBank={questionBank}
                     responses={responses}

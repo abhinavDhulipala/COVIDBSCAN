@@ -8,12 +8,14 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Quiz from "./components/Quiz";
 import HomePage from "./components/HomePage";
 import ClusterMap from "./components/ClusterMap";
+import VirtualCheckUp from "./components/exposedEndpoint/DataCollection";
 
 const debug = process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
 
 const engine = new Styletron();
 
-function Index () {
+
+function Index() {
     // plug in to 'component' prop to generate a 302 redirect to a different url
     function redirect(to) {
         return () => window.location.href = to
@@ -36,5 +38,5 @@ function Index () {
 
 ReactDOM.render(
     <StyletronProvider value={engine} debug={debug} debugAfterHydration>
-        <Index/>
+        <VirtualCheckUp/>
     </StyletronProvider>, document.getElementById("root"));

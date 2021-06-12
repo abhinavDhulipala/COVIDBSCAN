@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 const QuestionBox = ({ question, options, selected}) => {
     const [answer,] = useState(options)
     const [clicked,] = useState(new Array(answer.length).fill(false))
-    const yesNoQuestion = JSON.stringify(answer.sort().map(str => str.toLowerCase())) === JSON.stringify(['no', 'yes'])
+    const isYesNoQuestion = JSON.stringify(answer.sort().map(str => str.toLowerCase())) === JSON.stringify(['no', 'yes'])
     return (
         <div>
             <Card className="mb-3" style={{ color: "#000" }}>
@@ -21,10 +21,8 @@ const QuestionBox = ({ question, options, selected}) => {
                             onClick={()=> {
                                 selected(text)
                                 clicked[index] = !clicked[index]
-                                if (yesNoQuestion && clicked.every(c => c)) {
-                                    clicked[1 - index] = false
-                                }
-                        }}> {text}
+                                if (isYesNoQuestion && clicked.every(c => c)) clicked[1 - index] = false
+                            }}> {text}
                         </Button>
                     ))}
                 </Card.Body>

@@ -14,7 +14,6 @@ const debug = process.env.NODE_ENV === "production" ? void 0 : new DebugEngine()
 
 const engine = new Styletron();
 
-// plug in to 'component' prop to generate a 302 redirect to a different url
 function redirect(to) {
     return () => window.location.href = to
 }

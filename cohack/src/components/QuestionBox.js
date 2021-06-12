@@ -4,11 +4,9 @@ import {Card} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 const QuestionBox = ({ question, options, selected}) => {
-    const [answer, setAnswer] = useState(options);
-
-    // using setAnswer so that there is no warning lol
-    console.log(setAnswer)
-
+    const [answer,] = useState(options)
+    const [clicked,] = useState(new Array(answer.length).fill(false))
+    const yesNoQuestion = JSON.stringify(answer.sort().map(str => str.toLowerCase())) === JSON.stringify(['no', 'yes'])
     return (
         <div>
             <Card className="mb-3" style={{ color: "#000" }}>
@@ -19,9 +17,15 @@ const QuestionBox = ({ question, options, selected}) => {
                     {answer.map((text,index) => (
                         <Button
                             key={index}
-                            className="mr-3 mt-2 mb-2"
-                            onClick={()=>{
-                            selected(text);
+                            className={`mr-3 mt-2 mb-2 ${clicked[index] ? 'btn-secondary': ''}`}
+                            onClick={()=> {
+                                selected(text)
+                                clicked[index] = !clicked[index]
+                                if (yesNoQuestion && clicked.every(c => c)) {
+                                    console.log('mutex detected')
+                                    clicked[1 - index] = false
+                                    console.log(clicked)
+                                }
                         }}> {text}
                         </Button>
                     ))}

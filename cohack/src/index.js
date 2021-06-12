@@ -14,12 +14,12 @@ const debug = process.env.NODE_ENV === "production" ? void 0 : new DebugEngine()
 
 const engine = new Styletron();
 
+// plug in to 'component' prop to generate a 302 redirect to a different url
+function redirect(to) {
+    return () => window.location.href = to
+}
 
 function Index() {
-    // plug in to 'component' prop to generate a 302 redirect to a different url
-    function redirect(to) {
-        return () => window.location.href = to
-    }
 
     return (
         <div>
@@ -29,6 +29,7 @@ function Index() {
                     <Route path="/quiz" component={Quiz}/>
                     <Route path="/map" component={ClusterMap}/>
                     <Route path="/home" component={HomePage}/>
+                    <Route path="/test" component={VirtualCheckUp}/>
                     <Route path="/" component={redirect('/home')}/>
                 </Switch>
             </Router>
@@ -38,5 +39,5 @@ function Index() {
 
 ReactDOM.render(
     <StyletronProvider value={engine} debug={debug} debugAfterHydration>
-        <VirtualCheckUp/>
+        <Index/>
     </StyletronProvider>, document.getElementById("root"));

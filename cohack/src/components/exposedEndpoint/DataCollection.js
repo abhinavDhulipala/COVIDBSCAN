@@ -1,10 +1,14 @@
-import React from "react";
+import React, {useCallback, useRef} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Jumbotron} from "react-bootstrap";
 import Webcam from "react-webcam";
 
 
 function VirtualCheckUp() {
+    const vidConstraints = {facingMode: 'default'}
+    const webcamRef = useRef(null)
+    const containerRef = useRef(null)
+    const handleUpload = useCallback(() => 'yyet', [webcamRef])
 
     return(
     <div>
@@ -21,8 +25,12 @@ function VirtualCheckUp() {
                     <li>TODO: Determine the minimum amount of requisite materials</li>
                 </ul>
             </p>
-            <Container>
-                <Webcam/>
+            <Container ref={containerRef}>
+                <Webcam
+                    audio={true}
+                    ref={webcamRef}
+                    videoConstraints={vidConstraints}
+                />
             </Container>
         </Jumbotron>
     </div>

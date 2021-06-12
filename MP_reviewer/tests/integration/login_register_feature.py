@@ -7,7 +7,7 @@ from flask import url_for
 # capybara.default_driver = 'selenium'
 
 """
-Note: if full features of selenium are required
+Note: if full features of selenium are required check testing.md
 """
 
 

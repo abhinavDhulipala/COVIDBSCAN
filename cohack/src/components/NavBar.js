@@ -4,13 +4,15 @@ import {Nav, Navbar} from "react-bootstrap";
 
 class NavBar extends Component {
     render() {
+        const imageWidth = 64
         return <Navbar bg="light" variant="light">
             <Navbar.Brand href="/" >
                 <img
                     alt=""
-                    src={require('../images/covidLogo.png')}
-                    width="50"
-                    height="50"
+                    src={require('../images/DBSCAN_LOGO.JPG')}
+                    // image w:h = 819:648
+                    width={`${imageWidth * 819 / 648}px`}
+                    height={`${imageWidth}px`}
                     className="d-inline-block align-top"
                 />
             </Navbar.Brand>

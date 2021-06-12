@@ -22,9 +22,7 @@ const QuestionBox = ({ question, options, selected}) => {
                                 selected(text)
                                 clicked[index] = !clicked[index]
                                 if (yesNoQuestion && clicked.every(c => c)) {
-                                    console.log('mutex detected')
                                     clicked[1 - index] = false
-                                    console.log(clicked)
                                 }
                         }}> {text}
                         </Button>

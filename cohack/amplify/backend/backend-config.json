@@ -1,17 +1,1 @@
-{
-  "auth": {
-    "covidbv37e591f6d": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "customAuth": false
-    }
-  },
-  "function": {
-    "S3Trigger24b97786": {
-      "service": "Lambda",
-      "providerPlugin": "awscloudformation",
-      "build": true
-    }
-  }
-}
+{}

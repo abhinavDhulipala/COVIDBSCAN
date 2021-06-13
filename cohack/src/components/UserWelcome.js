@@ -4,8 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import {Card} from "react-bootstrap";
 import {Amplify} from 'aws-amplify'
 import {withAuthenticator} from '@aws-amplify/ui-react'
-import config from './aws-exports'
-Amplify.configure(config)
 
 class UserWelcome extends Component {
     constructor(props) {

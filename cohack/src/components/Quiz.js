@@ -71,8 +71,8 @@ class Quiz extends Component {
 
     // Function to compute scores
     computeAnswer = (answer, correctAns) => {
-        let i;
-        for (i = 0; i < correctAns.length; i++) {
+
+        correctAns.forEach(_ => {
             if (answer === "None of the Above") {
                 this.setState({
                     responses: -1
@@ -82,7 +82,7 @@ class Quiz extends Component {
                     responses: 1
                 });
             }
-        }
+        })
     };
 
     computeAsymptomatic = (answer, correctAns) => {

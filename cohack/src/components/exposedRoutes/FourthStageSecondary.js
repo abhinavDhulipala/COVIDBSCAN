@@ -20,7 +20,7 @@ class FourthStageSecondary extends Component {
         });
     }
 
-    computeAnswer = (answer, correct) => {
+    computeAnswer = (answer, ) => {
         if (answer === "Yes") {
             this.setState({
                 urgent: true
@@ -51,10 +51,9 @@ class FourthStageSecondary extends Component {
         return (
             <div>
                 {!clickedNext &&
-                questionBank.map(({question, answers,
-                                      correct, questionId}) => <QuestionBox question=
-                                                                                {question} options={answers} key={questionId}
-                                                                            selected={answer => this.computeAnswer(answer, correct)}/>)
+                questionBank.map(({question, answers, correct, questionId}) =>
+                    <QuestionBox question={question} options={answers} key={questionId}
+                    selected={answer => this.computeAnswer(answer, correct)}/>)
                 }
                 {!clickedNext &&
                 <Button onClick={this.clickNext.bind(this)}> Next </Button>

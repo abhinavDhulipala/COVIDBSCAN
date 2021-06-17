@@ -8,9 +8,15 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Quiz from "./components/Quiz";
 import HomePage from "./components/HomePage";
 import ClusterMap from "./components/ClusterMap";
-import VirtualCheckUp from "./components/exposedEndpoint/DataCollection";
+import VirtualCheckUp from "./components/exposedEndpoint/DataCollection"
 
 const debug = process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
+
+// force the page to be cross-origin isolated
+// https://developer.chrome.com/blog/enabling-shared-array-buffer/
+const crHeaders = new Headers()
+crHeaders.set('Cross-Origin-Embedder-Policy', 'require-corp')
+crHeaders.set('Cross-Origin-Opener-Policy', 'same-origin')
 
 const engine = new Styletron();
 

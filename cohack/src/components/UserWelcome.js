@@ -1,9 +1,12 @@
 import React, {Component}  from 'react'
-import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Card} from "react-bootstrap";
+import {Card} from "react-bootstrap"
 import {Amplify} from 'aws-amplify'
 import {withAuthenticator} from '@aws-amplify/ui-react'
+import awsConfig from '../aws-exports'
+
+Amplify.configure(awsConfig)
 
 class UserWelcome extends Component {
     constructor(props) {
@@ -39,7 +42,7 @@ class UserWelcome extends Component {
     }
 
     render() {
-        return <div>
+        return <>
             <header>
                 <Card className="mb-3" style={{ color: "#000" }}>
                     <Card.Body>
@@ -84,8 +87,8 @@ class UserWelcome extends Component {
                     </Card.Body>
                 </Card>
             </header>
-        </div>
+        </>
     }
 }
 
-export default UserWelcome
+export default withAuthenticator(UserWelcome)

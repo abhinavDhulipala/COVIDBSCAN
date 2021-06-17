@@ -1,42 +1,83 @@
-import React, {useCallback, useRef} from "react";
+import React, {useCallback, useRef, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Container, Jumbotron} from "react-bootstrap";
 import Webcam from "react-webcam";
+import Amplify, {Storage} from 'aws-amplify'
+import awsConfig from '../../aws-exports'
+import {withAuthenticator} from '@aws-amplify/ui-react'
 
+Amplify.configure(awsConfig)
 
 function VirtualCheckUp() {
-    const vidConstraints = {facingMode: 'default'}
     const webcamRef = useRef(null)
-    const containerRef = useRef(null)
-    const handleUpload = useCallback(() => webcamRef.current.getScreenshot(), [webcamRef])
+    const mediaRecorderRef = useRef(null)
+    const [capturing, setCapturing] = useState(false)
+    const [recordedChunks, setRecordedChunks] = useState([])
 
-    return(
-    <div>
+    const handleDataAvailable = useCallback(
+        ({ data }) => {
+            if (data.size) setRecordedChunks((prev) => prev.concat(data))
+        },
+        [setRecordedChunks]
+    )
+
+    const handleStartCaptureClick = useCallback(() => {
+        setCapturing(true);
+        mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
+            mimeType: "video/webm"
+        });
+        mediaRecorderRef.current.addEventListener(
+            'dataavailable',
+            handleDataAvailable
+        );
+        mediaRecorderRef.current.start()
+    }, [setCapturing, mediaRecorderRef, handleDataAvailable])
+
+    const handleStopCaptureClick = React.useCallback(() => {
+        mediaRecorderRef.current.stop()
+        setCapturing(false)
+    }, [mediaRecorderRef, setCapturing])
+
+    const handleDownload = React.useCallback(() => {
+        if (recordedChunks.length) {
+            const blob = new Blob(recordedChunks, {
+                type: "video/webm"
+            })
+            const url = URL.createObjectURL(blob)
+            const a = document.createElement("a")
+            document.body.appendChild(a)
+            a.href = url
+            a.download = "react-webcam-stream-capture.webm"
+            a.click()
+            window.URL.revokeObjectURL(url)
+            setRecordedChunks([])
+            let name = 'shit'
+            Storage.put(name, blob, {
+                /* level: 'protected', */
+                contentType: 'video/webm',
+            })
+                .then((result) => console.log(result))
+                .catch(err => alert(`Error: ${err}`))
+
+        }
+    }, [recordedChunks])
+
+    return <>
         <Jumbotron>
-            <h1 >Welcome to your Virtual Checkout</h1>
-            <p className="text-md-left">
-                On this page we will ask you to submit a simple video to help describe your symptoms as well and give
-                our volunteers some symptoms so that we can process your concerns
-            </p>
-            <p>
-                Please have the following materials ready:
-                <ul>
-                    <li>Tongue depressor</li>
-                    <li>TODO: Determine the minimum amount of requisite materials</li>
-                </ul>
-            </p>
-            <Container ref={containerRef}>
-                <Webcam
-                    audio={true}
-                    ref={webcamRef}
-                    videoConstraints={vidConstraints}
-                />
-                <Button onClick={handleUpload}>Describe symptoms</Button>
+            <h1 aria-live="" align="center">Virtual Assistant</h1>
+            <Container className={'flex'}>
+                <div align="center">
+                    <Webcam audio={false} ref={webcamRef}/>
+                </div>
+                <div className={'flex'} align="center">
+                    {capturing && <Button onClick={handleStopCaptureClick}>Stop Capture</Button>}
+                    {!capturing && <Button onClick={handleStartCaptureClick}>Start Capture</Button>}
+                    {recordedChunks.length > 0 && <Button onClick={handleDownload}>Download & Upload</Button>}
+                </div>
             </Container>
         </Jumbotron>
-    </div>
-    )
+    </>
 
 }
 
-export default VirtualCheckUp;
+export default withAuthenticator(VirtualCheckUp)

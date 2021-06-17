@@ -10,6 +10,11 @@
       "StackName": "amplify-covidbscanreact-dev-150535",
       "StackId": "arn:aws:cloudformation:us-east-1:025967645844:stack/amplify-covidbscanreact-dev-150535/522a7a80-cbca-11eb-8213-0ae04cd9df81",
       "AmplifyAppId": "d38t81sqwq9a32"
+    },
+    "categories": {
+      "auth": {
+        "covidbscanreact6a5d9cf8": {}
+      }
     }
   }
 }

@@ -2,11 +2,7 @@ import React, {Component}  from 'react'
 import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Card} from "react-bootstrap"
-import {Amplify} from 'aws-amplify'
 import {withAuthenticator} from '@aws-amplify/ui-react'
-import awsConfig from '../aws-exports'
-
-Amplify.configure(awsConfig)
 
 class UserWelcome extends Component {
     constructor(props) {

@@ -2,13 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {DebugEngine, Provider as StyletronProvider} from "styletron-react"
 import {Client as Styletron} from "styletron-engine-atomic"
-import './index.css'
-import Navbar from "./components/NavBar";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import Quiz from "./components/Quiz";
-import HomePage from "./components/HomePage";
-import ClusterMap from "./components/ClusterMap";
+import Navbar from "./components/NavBar"
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import Quiz from "./components/Quiz"
+import HomePage from "./components/HomePage"
+import ClusterMap from "./components/ClusterMap"
 import VirtualCheckUp from "./components/exposedEndpoint/DataCollection"
+import Amplify from 'aws-amplify'
+import awsmobile from "./aws-exports"
+
+Amplify.configure(awsmobile)
 
 const debug = process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
 

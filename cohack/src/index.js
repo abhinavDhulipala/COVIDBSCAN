@@ -10,16 +10,12 @@ import ClusterMap from "./components/ClusterMap"
 import VirtualCheckUp from "./components/exposedEndpoint/DataCollection"
 import Amplify from 'aws-amplify'
 import awsmobile from "./aws-exports"
+import './index.css'
+import {withAuthenticator} from '@aws-amplify/ui-react'
 
 Amplify.configure(awsmobile)
 
 const debug = process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
-
-// force the page to be cross-origin isolated
-// https://developer.chrome.com/blog/enabling-shared-array-buffer/
-const crHeaders = new Headers()
-crHeaders.set('Cross-Origin-Embedder-Policy', 'require-corp')
-crHeaders.set('Cross-Origin-Opener-Policy', 'same-origin')
 
 const engine = new Styletron();
 
@@ -34,8 +30,8 @@ function Index() {
             <Navbar/>
             <Router>
                 <Switch>
-                    <Route path="/quiz" component={Quiz}/>
-                    <Route path="/map" component={ClusterMap}/>
+                    <Route path="/quiz" component={withAuthenticator(Quiz)}/>
+                    <Route path="/map" component={withAuthenticator(ClusterMap)}/>
                     <Route path="/home" component={HomePage}/>
                     <Route path="/test" component={VirtualCheckUp}/>
                     <Route path="/" component={redirect('/home')}/>

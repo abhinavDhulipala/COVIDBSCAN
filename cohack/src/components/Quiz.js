@@ -132,7 +132,7 @@ class Quiz extends Component {
         }
     };
 
-    computeExposureAnswer = (answer, correctAns) => {
+    computeExposureAnswer = (answer, _) => {
         if (answer === "Yes") {
             this.setState({
                 exposed: 1
@@ -213,10 +213,9 @@ class Quiz extends Component {
 
         return (
             <div className="container">
-                {refresh && <UserWelcome toggleAgree={this.toggleAgree}
-                                         toggleDisagree={this.toggleDisagree}
-                                         toggleRefresh={this.toggleRefresh} />}
-
+                {refresh && <UserWelcome toggleAgree={_ => this.setState({agree: true})}
+                                         toggleDisagree={_ => this.setState({agree: false})}
+                                         toggleRefresh={_ => this.setState({refresh: false})} />}
                 {(agree && !atQuiz && !isMinor && !isSenior) ? (
                     <ToggleAge toggleAge={this.toggleAge} toggleMinor={this.toggleMinor}/>
                 ) : (

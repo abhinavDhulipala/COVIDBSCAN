@@ -1,3 +1,9 @@
+:root {
+  --amplify-primary-color: #3f4b5d;
+  --amplify-primary-tint: #544591;
+  --amplify-primary-shade: #3b85cf;
+}
+
 @font-face {
   font-family: objectSansHeavy;
   src: url("./fonts/ObjectSans-Heavy.otf");

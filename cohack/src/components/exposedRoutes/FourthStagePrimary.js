@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import QuestionBox from "../QuestionBox";
-import exposedAPI from "../../symptomaticQuestions/exposed";
-import Button from "react-bootstrap/Button";
+import React, { Component } from 'react'
+import QuestionBox from "../QuestionBox"
+import exposedAPI from "../../symptomaticQuestions/exposed"
+import Button from "react-bootstrap/Button"
+import DataCollection from "../exposedEndpoint/DataCollection";
 
 class FourthStagePrimary extends Component {
     constructor(props) {
@@ -75,7 +76,10 @@ class FourthStagePrimary extends Component {
                     <div>
                         <h2> You may be eligible for COVID-19 testing. </h2>
                         <p> Stay home (or keep your child home) and take care of yourself (or your child).
-                        Call your (or your child’s) medical provider if you get (or your child gets) worse. </p>
+                            Call your (or your child’s) medical provider if you get (or your child gets) worse. For now
+                            take our virtual assistant so we can add you as a datapoint.
+                        </p>
+                        <DataCollection/>
                     </div>
                 }
             </div>

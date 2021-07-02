@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Container, Jumbotron} from "react-bootstrap";
 import Webcam from "react-webcam";
 import {Storage} from 'aws-amplify'
-import {withAuthenticator} from '@aws-amplify/ui-react'
 
 function VirtualCheckUp() {
     const webcamRef = useRef(null)
@@ -13,7 +12,7 @@ function VirtualCheckUp() {
 
     const handleDataAvailable = useCallback(
         ({ data }) => {
-            if (data.size) setRecordedChunks((prev) => prev.concat(data))
+            if (data.size) setRecordedChunks(prev => prev.concat(data))
         },
         [setRecordedChunks]
     )
@@ -53,8 +52,11 @@ function VirtualCheckUp() {
                 /* level: 'protected', */
                 contentType: 'video/webm',
             })
-                .then((result) => console.log(result))
-                .catch(err => alert(`Error: ${err}`))
+                .then(result => console.log(result))
+                .catch(err => {
+                    alert(`Error: ${err}`)
+                    console.log(`Storage Put service error: ${err}`)
+                })
 
         }
     }, [recordedChunks])
@@ -67,19 +69,17 @@ function VirtualCheckUp() {
                 our volunteers some symptoms so that we can process your concerns. This is mainly for data validation
                 so don't worry too much about it. Just submit a video so we know you are genuine and not trying to flood
                 our servers with false data-points :).
-            </p>
-            <p>
                 You could use several materials like:
-                <ul>
-                    <li>Tongue depressors</li>
-                    <li>Thermometers</li>
-                    <li>Swabs</li>
-                    <li>Anything thing that helps us get an accurate picture of your symptoms...</li>
-                </ul>
             </p>
+            <ul>
+                <li>Tongue depressors</li>
+                <li>Thermometers</li>
+                <li>Swabs</li>
+                <li>Anything thing that helps us get an accurate picture of your symptoms...</li>
+            </ul>
             <Container className={'flex'}>
                 <div align="center">
-                    <Webcam audio={false} ref={webcamRef}/>
+                    <Webcam ref={webcamRef}/>
                 </div>
                 <div className={'flex'} align="center">
                     {capturing && <Button onClick={handleStopCaptureClick}>Stop Capture</Button>}
@@ -92,4 +92,4 @@ function VirtualCheckUp() {
 
 }
 
-export default withAuthenticator(VirtualCheckUp)
+export default VirtualCheckUp

@@ -2,39 +2,22 @@ import React, {Component}  from 'react'
 import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Card} from "react-bootstrap"
-import {withAuthenticator} from '@aws-amplify/ui-react'
 
 class UserWelcome extends Component {
     constructor(props) {
         super(props);
-
-        this.toggleAgree = this.toggleAgree.bind(this);
-        this.toggleDisagree = this.toggleDisagree.bind(this);
-        this.toggleRefresh = this.toggleRefresh.bind(this);
         this.onClickAgree = this.onClickAgree.bind(this);
         this.onClickDisagree = this.onClickDisagree.bind(this);
     }
 
-    toggleAgree = () => {
-        this.props.toggleAgree();
-    }
-
-    toggleDisagree = () => {
-        this.props.toggleDisagree();
-    }
-
-    toggleRefresh = () => {
-        this.props.toggleRefresh();
-    }
-
     onClickAgree = () => {
-        this.toggleAgree();
-        this.toggleRefresh();
+        this.props.toggleAgree()
+        this.props.toggleRefresh()
     }
 
     onClickDisagree = () => {
-        this.toggleDisagree();
-        this.toggleRefresh();
+        this.props.toggleDisagree()
+        this.props.toggleRefresh()
     }
 
     render() {
@@ -87,4 +70,4 @@ class UserWelcome extends Component {
     }
 }
 
-export default withAuthenticator(UserWelcome)
+export default UserWelcome
